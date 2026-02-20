@@ -1,4 +1,4 @@
-import LogoInspira from '../LogoInspira/LogoInspira'
+import Logo from '../Logo/Logo'
 import './Hero.css'
 
 function Hero() {
@@ -7,7 +7,7 @@ function Hero() {
       <div className="hero__bg" aria-hidden="true" />
       <div className="hero__overlay" aria-hidden="true" />
       <div className="hero__content">
-        <LogoInspira variant="hero" />
+        <Logo variant="hero" />
         <h1 className="hero__title" id="hero-title">
           Consultoría oficial de Recursos Humanos
         </h1>
