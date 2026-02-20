@@ -1,0 +1,65 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  background-color: #1a2f4a;
+  background-image: url('/hero-bg.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hero__overlay {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 42rem;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0px;
+}
+
+.hero__content .logo-inspira {
+  margin-bottom: 1.5rem;
+}
+
+.hero__title {
+  margin: 0 0 0.75rem;
+  font-family: 'Gotham', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 1.15;
+  color: #fff;
+  width: 100%;
+}
+
+.hero__subtitle {
+  margin: 0;
+  font-family: 'Gotham', system-ui, sans-serif;
+  font-weight: 350; /* Gotham Book */
+  font-size: 28px;
+  line-height: 1.4;
+  color: #fff;
+  width: 100%;
+}

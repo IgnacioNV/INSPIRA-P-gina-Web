@@ -1,0 +1,17 @@
+.logo-inspira {
+  display: inline-block;
+  line-height: 0;
+  background: transparent;
+}
+
+.logo-inspira__img {
+  display: block;
+  width: auto;
+  height: 2rem;
+  object-fit: contain;
+  background: transparent;
+}
+
+.logo-inspira--hero .logo-inspira__img {
+  height: 233px;
+}

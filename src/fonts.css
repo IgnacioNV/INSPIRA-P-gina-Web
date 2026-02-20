@@ -1,0 +1,31 @@
+/**
+ * Gotham (Book, Medium, Black).
+ * Colocar los archivos .woff2 en public/fonts/:
+ * - Gotham-Book.woff2
+ * - Gotham-Medium.woff2
+ * - Gotham-Black.woff2
+ */
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('/fonts/Gotham-Book.woff2') format('woff2');
+  font-weight: 350;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('/fonts/Gotham-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('/fonts/Gotham-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
