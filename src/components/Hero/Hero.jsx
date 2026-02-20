@@ -3,11 +3,11 @@ import './Hero.css'
 
 function Hero() {
   return (
-    <section className="hero" aria-labelledby="hero-title">
+    <section id="inicio" className="hero" aria-labelledby="hero-title">
       <div className="hero__bg" aria-hidden="true" />
       <div className="hero__overlay" aria-hidden="true" />
       <div className="hero__content">
-        <Logo variant="hero" />
+        <Logo variant="dark" className="logo-inspira--hero" />
         <h1 className="hero__title" id="hero-title">
           Consultoría oficial de Recursos Humanos
         </h1>

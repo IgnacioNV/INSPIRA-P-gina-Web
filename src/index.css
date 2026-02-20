@@ -1,10 +1,27 @@
+/* ============================================
+   Inspira – Sistema de colores centralizado
+   Solo usar estas variables. Sin colores nuevos.
+   ============================================ */
+:root {
+  --text-color: #040022;
+  --orange: #D97400;
+  --background-color: #FFF6F1;
+  --blue: #0089BE;
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-color);
 }

@@ -1,21 +1,24 @@
 import './Logo.css'
 
-function Logo({ variant = 'default' }) {
-  const isHero = variant === 'hero'
+const LOGO_SRC = {
+  dark: '/logo-inspira-dark.png',
+  light: '/logo-inspira-light.png',
+}
+
+function Logo({ variant = 'light', className = '' }) {
+  const src = LOGO_SRC[variant] ?? LOGO_SRC.light
 
   return (
-    <div
-      className={`logo-inspira ${isHero ? 'logo-inspira--hero' : ''}`}
+    <span
+      className={`logo-inspira ${className}`.trim()}
       aria-label="Inspira"
     >
       <img
-        src="/logo-inspira.png"
-        alt="Inspira"
+        src={src}
+        alt="Inspira logo"
         className="logo-inspira__img"
-        width="180"
-        height="48"
       />
-    </div>
+    </span>
   )
 }
 
