@@ -1,0 +1,14 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0089BE;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#D97400;stop-opacity:0.8" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#grad2)"/>
+  <rect x="50" y="80" width="120" height="80" rx="8" fill="white" opacity="0.3"/>
+  <rect x="200" y="120" width="120" height="80" rx="8" fill="white" opacity="0.3"/>
+  <rect x="350" y="100" width="120" height="80" rx="8" fill="white" opacity="0.3"/>
+  <circle cx="300" cy="320" r="50" fill="white" opacity="0.2"/>
+  <text x="300" y="240" font-family="Montserrat, sans-serif" font-size="24" font-weight="600" text-anchor="middle" fill="white">Capacitaciones</text>
+</svg>

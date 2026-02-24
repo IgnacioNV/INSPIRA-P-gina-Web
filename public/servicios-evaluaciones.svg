@@ -1,0 +1,20 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0089BE;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#040022;stop-opacity:0.8" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#grad4)"/>
+  <rect x="150" y="100" width="300" height="200" rx="15" fill="white" opacity="0.3"/>
+  <circle cx="200" cy="150" r="15" fill="white" opacity="0.6"/>
+  <circle cx="250" cy="150" r="15" fill="white" opacity="0.6"/>
+  <circle cx="300" cy="150" r="15" fill="white" opacity="0.6"/>
+  <circle cx="350" cy="150" r="15" fill="white" opacity="0.6"/>
+  <circle cx="400" cy="150" r="15" fill="white" opacity="0.6"/>
+  <rect x="180" y="190" width="240" height="8" rx="4" fill="white" opacity="0.4"/>
+  <rect x="180" y="210" width="200" height="8" rx="4" fill="white" opacity="0.4"/>
+  <rect x="180" y="230" width="180" height="8" rx="4" fill="white" opacity="0.4"/>
+  <text x="300" y="340" font-family="Montserrat, sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="white">Evaluaciones</text>
+  <text x="300" y="365" font-family="Montserrat, sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="white">Psicotécnicas</text>
+</svg>

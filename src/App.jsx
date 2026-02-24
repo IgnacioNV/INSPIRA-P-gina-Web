@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
+import Servicios from './components/Servicios/Servicios'
 
 function App() {
   return (
@@ -7,7 +8,7 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <section id="servicios" aria-label="Servicios" />
+        <Servicios />
         <section id="clientes" aria-label="Clientes" />
         <section id="novedades" aria-label="Novedades" />
         <section id="nosotros" aria-label="Nosotros" />
