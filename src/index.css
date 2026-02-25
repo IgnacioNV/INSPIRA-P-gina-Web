@@ -25,3 +25,30 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
 }
+
+/* Header de la sección */
+.section-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--text-color);
+  margin: 0 0 20px 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.section-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--text-color);
+  margin: 0;
+  width: auto;
+  line-height: 1.6;
+  font-style: italic;
+}

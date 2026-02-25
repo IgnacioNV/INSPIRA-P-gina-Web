@@ -1,0 +1,72 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo -->
+  <rect width="800" height="600" fill="#FFF6F1"/>
+  
+  <!-- Grid de cards de clientes -->
+  <!-- Fila 1 -->
+  <rect x="50" y="80" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="190" y="80" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="330" y="80" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="470" y="80" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="610" y="80" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  
+  <!-- Fila 2 -->
+  <rect x="50" y="180" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="190" y="180" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="330" y="180" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="470" y="180" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="610" y="180" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  
+  <!-- Fila 3 -->
+  <rect x="50" y="280" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="190" y="280" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="330" y="280" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="470" y="280" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="610" y="280" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  
+  <!-- Fila 4 -->
+  <rect x="50" y="380" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="190" y="380" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="330" y="380" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="470" y="380" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="610" y="380" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  
+  <!-- Fila 5 -->
+  <rect x="50" y="480" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="190" y="480" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="330" y="480" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="470" y="480" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="610" y="480" width="120" height="80" rx="8" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  
+  <!-- Algunos logos representativos -->
+  <!-- Prosegur -->
+  <rect x="190" y="90" width="100" height="30" rx="4" fill="#FFD600"/>
+  <text x="240" y="110" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#333">PROSEGUR</text>
+  
+  <!-- La Nacion -->
+  <text x="400" y="125" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#0066CC">LA NACIÓN</text>
+  
+  <!-- Valid -->
+  <text x="110" y="225" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">Valid</text>
+  
+  <!-- Calsa -->
+  <rect x="330" y="190" width="100" height="25" rx="4" fill="#CC0000"/>
+  <text x="380" y="208" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="white">calsa</text>
+  
+  <!-- BGH -->
+  <rect x="470" y="290" width="100" height="25" rx="4" fill="#003366"/>
+  <text x="520" y="308" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="white">BGH</text>
+  
+  <!-- Otros logos simplificados -->
+  <circle cx="110" cy="320" r="15" fill="#0089BE"/>
+  <circle cx="250" cy="320" r="15" fill="#D97400"/>
+  <circle cx="390" cy="320" r="15" fill="#666666"/>
+  <circle cx="530" cy="320" r="15" fill="#333333"/>
+  <circle cx="670" cy="320" r="15" fill="#0066CC"/>
+  
+  <!-- Sombras sutiles en algunas cards -->
+  <rect x="52" y="82" width="120" height="80" rx="8" fill="none" stroke="none" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1))"/>
+  <rect x="192" y="82" width="120" height="80" rx="8" fill="none" stroke="none" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1))"/>
+  <rect x="332" y="82" width="120" height="80" rx="8" fill="none" stroke="none" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1))"/>
+  
+</svg>
