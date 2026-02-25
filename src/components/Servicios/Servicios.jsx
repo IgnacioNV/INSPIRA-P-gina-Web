@@ -87,7 +87,7 @@ const Servicios = () => {
   }, [activeService])
 
   return (
-    <section className="servicios" ref={sectionRef}>
+    <section className="servicios" id='servicios' ref={sectionRef}>
       <div className="servicios-container">
         <div className="servicios-header">
           <h2 className="servicios-title">SERVICIOS</h2>

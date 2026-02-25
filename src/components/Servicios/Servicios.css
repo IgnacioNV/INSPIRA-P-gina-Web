@@ -46,7 +46,7 @@
 
 .servicios-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.5fr;
   gap: 80px;
   flex: 1;
   align-items: center;
@@ -67,7 +67,7 @@
 
 .image-container {
   width: 100%;
-  max-width: 500px;
+  max-width: 800px;
   aspect-ratio: 4/3;
   border-radius: 12px;
   overflow: hidden;

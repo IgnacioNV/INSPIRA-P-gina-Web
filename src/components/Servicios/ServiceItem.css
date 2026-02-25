@@ -8,6 +8,17 @@
   overflow: hidden;
 }
 
+.service-item::after {
+  content: '';
+  position: absolute;
+  left: 24px;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #919191;
+  opacity: 0.4; /* lo hace más sutil */
+}
+
 .service-item:hover {
   border-color: rgba(217, 116, 0, 0.2);
   background-color: rgba(217, 116, 0, 0.02);
@@ -97,6 +108,7 @@
   padding-left: 24px;
   background-color: rgba(217, 116, 0, 0.03);
   border-left: 3px solid var(--orange);
+  padding-right: 16px;
 }
 
 /* Responsive Design */
