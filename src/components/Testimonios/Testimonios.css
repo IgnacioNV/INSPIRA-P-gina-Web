@@ -1,0 +1,251 @@
+/* Importar Montserrat desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+.testimonios {
+  padding-bottom: 60px;
+  background-color: var(--background-color);
+  position: relative;
+}
+
+.testimonios-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Wrapper con fondo degradado */
+.testimonios-wrapper {
+  background: linear-gradient(var(--background-color) 20%, #0021535c);
+  border-radius: 40px;
+  padding: 60px 60px;
+  margin-top: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonios-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Grid de testimonios */
+.testimonios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Cards individuales */
+.testimonio-card {
+  background: white;
+  border-radius: 20px;
+  padding: 32px 40px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+.testimonio-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 6px;
+  background-color: var(--orange);
+  opacity: 0;
+}
+.testimonio-card:hover::after{
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+.testimonio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+  scale: 1.02;
+  transition: all 0.3s ease;
+}
+
+/* Avatar circular */
+.testimonio-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  margin: 0 auto 25px auto;
+  border: 1.5px solid var(--orange);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Nombre del testimonio */
+.testimonio-nombre {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0 0 10px 0;
+  line-height: 1.3;
+}
+
+/* Rol/cargo */
+.testimonio-rol {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #666;
+  margin: 0 0 25px 0;
+  line-height: 1.4;
+}
+
+/* Texto del testimonio */
+.testimonio-texto {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .testimonios {
+    padding: 80px 0;
+  }
+
+  .testimonios-container {
+    padding: 0 30px;
+  }
+
+  .testimonios-wrapper {
+    padding: 60px 40px;
+    border-radius: 30px;
+    margin-top: 50px;
+  }
+
+  .testimonios-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .testimonio-card {
+    padding: 35px 25px;
+  }
+
+  .testimonio-avatar {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+  }
+
+  .testimonio-nombre {
+    font-size: 1.15rem;
+  }
+
+  .testimonio-rol {
+    font-size: 0.8rem;
+  }
+
+  .testimonio-texto {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonios {
+    padding: 60px 0;
+  }
+
+  .testimonios-container {
+    padding: 0 20px;
+  }
+
+  .testimonios-wrapper {
+    padding: 40px 20px;
+    border-radius: 20px;
+    margin-top: 40px;
+  }
+
+  .testimonios-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .testimonio-card {
+    padding: 30px 25px;
+    border-radius: 15px;
+  }
+
+  .testimonio-avatar {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 18px;
+  }
+
+  .testimonio-nombre {
+    font-size: 1.1rem;
+  }
+
+  .testimonio-rol {
+    font-size: 0.75rem;
+    margin-bottom: 20px;
+  }
+
+  .testimonio-texto {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonios {
+    padding: 50px 0;
+  }
+
+  .testimonios-wrapper {
+    padding: 30px 15px;
+    border-radius: 15px;
+  }
+
+  .testimonio-card {
+    padding: 25px 20px;
+  }
+
+  .testimonio-avatar {
+    width: 65px;
+    height: 65px;
+  }
+
+  .testimonio-nombre {
+    font-size: 1.05rem;
+  }
+
+  .testimonio-rol {
+    font-size: 0.7rem;
+  }
+
+  .testimonio-texto {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+}
