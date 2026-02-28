@@ -88,6 +88,7 @@ const Servicios = () => {
 
   return (
     <section className="servicios" id='servicios' ref={sectionRef}>
+      <div className="servicios-pattern" />
       <div className="servicios-container">
         <div className="servicios-header">
           <h2 className="servicios-title">SERVICIOS</h2>

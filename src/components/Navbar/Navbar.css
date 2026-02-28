@@ -78,8 +78,9 @@
   border-radius: 9999px;
   text-decoration: none;
   cursor: pointer;
+  transition: all 300ms ease;
 }
 
 .navbar__button:hover {
-  background-color: var(--orange);
+  background-color: #EDA24C;
 }

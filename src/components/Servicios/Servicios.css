@@ -4,8 +4,14 @@
 .servicios {
   min-height: 300vh; /* Altura extendida para permitir scroll interno */
   padding: 80px 0;
-  background-color: var(--background-color);
+  margin: -40px 0;
   position: relative;
+  background-color: var(--background-color);
+  /*background-image: url('/patrones/fondo-servicios.png');
+  background-size: fill;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;*/
 }
 
 .servicios-container {

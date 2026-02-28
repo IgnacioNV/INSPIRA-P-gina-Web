@@ -1,0 +1,23 @@
+<svg width="400" height="240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D6E4E8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B8CDD4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="240" fill="url(#grad2)"/>
+  <!-- Mesa de trabajo -->
+  <ellipse cx="200" cy="160" rx="120" ry="60" fill="#A8B8C0" opacity="0.6"/>
+  <!-- Laptop -->
+  <rect x="160" y="120" width="80" height="50" rx="4" fill="#4A5861" opacity="0.8"/>
+  <rect x="165" y="125" width="70" height="35" rx="2" fill="#E8F0F2"/>
+  <!-- Taza de café -->
+  <circle cx="130" cy="140" r="12" fill="white" opacity="0.9"/>
+  <circle cx="130" cy="140" r="8" fill="#8B6F47" opacity="0.7"/>
+  <!-- Planta -->
+  <rect x="270" y="135" width="8" height="15" fill="#6B8F5A" opacity="0.8"/>
+  <circle cx="274" cy="130" r="8" fill="#7FA65A" opacity="0.8"/>
+  <!-- Elementos decorativos -->
+  <rect x="320" y="100" width="50" height="30" rx="4" fill="white" opacity="0.4"/>
+  <text x="200" y="200" font-family="Montserrat, sans-serif" font-size="12" font-weight="500" text-anchor="middle" fill="#666" opacity="0.8">Productividad</text>
+</svg>
