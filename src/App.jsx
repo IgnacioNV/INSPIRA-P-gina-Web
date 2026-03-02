@@ -5,6 +5,7 @@ import Clientes from './components/Clientes/Clientes'
 import Testimonios from './components/Testimonios/Testimonios'
 import Novedades from './components/Novedades/Novedades'
 import Nosotros from './components/Nosotros/Nosotros'
+import Footer from './components/Footer/Footer'
 
 function App() {
   return (
@@ -17,8 +18,8 @@ function App() {
         <Testimonios />
         <Novedades />
         <Nosotros />
-        <section id="contacto" aria-label="Contacto" />
       </main>
+      <Footer />
     </>
   )
 }
