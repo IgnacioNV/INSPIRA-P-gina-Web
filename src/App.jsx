@@ -4,6 +4,7 @@ import Servicios from './components/Servicios/Servicios'
 import Clientes from './components/Clientes/Clientes'
 import Testimonios from './components/Testimonios/Testimonios'
 import Novedades from './components/Novedades/Novedades'
+import Nosotros from './components/Nosotros/Nosotros'
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Clientes />
         <Testimonios />
         <Novedades />
-        <section id="nosotros" aria-label="Nosotros" />
+        <Nosotros />
         <section id="contacto" aria-label="Contacto" />
       </main>
     </>

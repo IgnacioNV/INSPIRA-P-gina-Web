@@ -12,15 +12,27 @@ const NAV_ITEMS = [
 function Navbar() {
   const scrollTo = useCallback((id) => {
     const el = document.getElementById(id)
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
+    if (!el) return
+
+    const OFFSET = 80 // margen para que el título no quede tapado
+    const y =
+      el.getBoundingClientRect().top +
+      window.pageYOffset -
+      OFFSET
+
+    window.scrollTo({
+      top: y,
+      behavior: 'smooth',
+    })
   }, [])
 
-  const handleLogoClick = useCallback((e) => {
-    e.preventDefault()
-    scrollTo('inicio')
-  }, [scrollTo])
+  const handleLogoClick = useCallback(
+    (e) => {
+      e.preventDefault()
+      scrollTo('inicio')
+    },
+    [scrollTo]
+  )
 
   return (
     <header className="navbar" role="banner">
