@@ -9,7 +9,7 @@ function Hero() {
       <div className="hero__content">
         <Logo variant="dark" className="logo-inspira--hero" />
         <h1 className="hero__title" id="hero-title">
-          Consultoría oficial de Recursos Humanos
+          Consultoría en Recursos Humanos
         </h1>
         <p className="hero__subtitle">
           Acompañamos a personas y equipos a ordenar, decidir y crecer.
