@@ -7,28 +7,28 @@ const serviciosData = [
     id: 1,
     title: 'Búsqueda y Selección',
     description:
-      'Nos especializamos en la identificación y captación de los mejores talentos para tu organización.',
+      'Acompañamos a las organizaciones en la búsqueda e incorporación de personas alineadas con el puesto, la cultura y los objetivos del negocio. Trabajamos cada proceso de forma personalizada, comprendiendo la posición, evaluando con criterio y presentando candidatos con competencias técnicas y humanas para aportar valor e integrarse al equipo.',
     image: '/servicios-busqueda.svg'
   },
   {
     id: 2,
     title: 'Capacitaciones',
     description:
-      'Diseñamos programas de formación personalizados que potencian las competencias de tu equipo.',
+      'En Inspira entendemos la capacitación como un espacio para reflexionar, adquirir herramientas y abrir nuevas posibilidades de acción. Diseñamos propuestas a medida, enfocadas en las necesidades reales de cada cliente, buscando que el aprendizaje se traduzca en mejores prácticas, vínculos más efectivos y mayor impacto en el trabajo cotidiano.',
     image: '/servicios-capacitaciones.svg'
   },
   {
     id: 3,
     title: 'Coaching',
     description:
-      'Acompañamos a líderes y equipos en su desarrollo profesional y personal.',
+      'En Inspira concebimos el coaching como un espacio de reflexión que permite comprender lo que una persona atraviesa en su trabajo, reconocer recursos y desarrollar nuevas formas de actuar. Acompañamos procesos orientados a fortalecer liderazgo, comunicación y desarrollo profesional, con enfoque personalizado conectado con desafíos del rol.',
     image: '/servicios-coaching.svg'
   },
   {
     id: 4,
     title: 'Evaluaciones psicotécnicas',
     description:
-      'Implementamos herramientas de evaluación psicológica y técnica de última generación.',
+      'Realizamos evaluaciones psicotécnicas para apoyar procesos de selección y decisiones de desarrollo, aportando una mirada profesional sobre el perfil y su adecuación al rol. Trabajamos cada caso de forma contextualizada, considerando competencias, función y organización, ofreciendo información clara y útil para decisiones más sólidas.',
     image: '/servicios-evaluaciones.svg'
   },
   {

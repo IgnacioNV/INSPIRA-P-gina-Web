@@ -11,26 +11,10 @@ function Nosotros() {
 
         <div className="nosotros-texto-institucional">
           <p>
-            En <strong>Inspira Recursos Humanos</strong> acompañamos a organizaciones y líderes en procesos de 
-            desarrollo, transformación y fortalecimiento cultural. Creemos que los resultados sostenibles 
-            surgen del modo en que las personas piensan, conversan, deciden y construyen vínculos en 
-            contextos reales.
-          </p>
-          <p>
-            El nombre Inspira expresa nuestra esencia. Inspirar es tomar aire: generar energía, calma y 
-            claridad para reflexionar antes de actuar. Es también habilitar la creatividad, abrir nuevas 
-            miradas y encontrar soluciones que antes no estaban disponibles. Es movilizar, 
-            encender en otros la inspiración necesaria para emprender cambios significativos.
-          </p>
-          <p>
-            Trabajamos desde una mirada integradora que combina experiencia en consultoría, coaching 
-            ejecutivo y formación de líderes, junto con una sólida base académica desarrollada en espacios 
-            como la <strong>Universidad de Palermo</strong> y la <strong>Universidad de San Andrés</strong>.
-          </p>
-          <p>
-            Diseñamos intervenciones a medida —coaching ejecutivo, programas de liderazgo y desarrollo 
-            de equipos— con foco en generar impacto real, equilibrando resultados, conciencia y cuidado 
-            por las personas.
+            En <b>Inspira Recursos Humanos</b> acompañamos a organizaciones, equipos y líderes en sus procesos de desarrollo, ofreciendo servicios de selección de personal, evaluaciones psicotécnicas, capacitación y coaching. Trabajamos con una mirada profesional, cercana y personalizada, buscando comprender en profundidad cada contexto para diseñar propuestas que resulten útiles, aplicables y valiosas.
+            <br /><br />El nombre Inspira expresa parte central de nuestra identidad. Inspirar es ayudar a que otros puedan detenerse, reflexionar, ampliar su mirada, crear soluciones e implementarlas con sentido. También remite a la pausa y a la respiración: a ese espacio necesario para pensar con mayor claridad, conectar ideas y habilitar nuevas posibilidades. 
+            <br /><br />Desde esa convicción, promovemos intervenciones que combinan solidez técnica, sensibilidad humana y foco en el desarrollo real de las personas y las organizaciones.
+
           </p>
         </div>
 

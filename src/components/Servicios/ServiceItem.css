@@ -49,7 +49,7 @@
 }
 
 .service-item.active .service-content {
-  max-height: 200px;
+  max-height: 240px;
   opacity: 1;
   padding-top: 15px;
 }
