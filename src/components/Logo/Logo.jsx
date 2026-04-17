@@ -1,8 +1,8 @@
 import './Logo.css'
 
 const LOGO_SRC = {
-  dark: '../../assets/logo/logo-inspira-dark.png',
-  light: '../../assets/logo/logo-inspira-light.png',
+  dark: './Logo/logo-inspira-dark.png',
+  light: './Logo/logo-inspira-light.png',
 }
 
 function Logo({ variant = 'light', className = '' }) {
