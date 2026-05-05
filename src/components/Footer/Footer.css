@@ -359,7 +359,8 @@
 @media (max-width: 480px) {
   .footer-container {
     max-width: none;
-    padding: 0 100px;
+    padding: 0;
+    max-width: 380px;
   }
   
   .footer-contact {

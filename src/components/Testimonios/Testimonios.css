@@ -231,8 +231,8 @@
 
 @media (max-width: 480px) {
   .testimonios-container {
-    max-width: none;
-    padding: 0 100px;
+    max-width: 380px;
+    padding: 0;
   }
 
   .testimonios {
