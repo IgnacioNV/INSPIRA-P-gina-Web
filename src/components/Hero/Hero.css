@@ -69,11 +69,7 @@
 .hero__subtitle {
   margin: 0;
   font-family: 'Montserrat', system-ui, sans-serif;
-<<<<<<< HEAD
   font-weight: 300;
-=======
-  font-weight: 350;
->>>>>>> changes_with_claude
   font-size: clamp(1rem, 3vw, 1.75rem);
   line-height: 1.4;
   color: var(--background-color);
