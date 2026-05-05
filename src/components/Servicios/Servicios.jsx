@@ -12,28 +12,28 @@ const serviciosData = [
     title: 'Búsqueda y Selección',
     description:
       'Acompañamos a las organizaciones en la búsqueda e incorporación de personas alineadas con el puesto, la cultura y los objetivos del negocio. Trabajamos cada proceso de forma personalizada, comprendiendo la posición, evaluando con criterio y presentando candidatos con competencias técnicas y humanas para aportar valor e integrarse al equipo.',
-    image: '/servicios/servicios-busqueda.jpg'
+    image: '/servicios/servicios-busqueda.JPG'
   },
   {
     id: 2,
     title: 'Capacitaciones',
     description:
       'En Inspira entendemos la capacitación como un espacio para reflexionar, adquirir herramientas y abrir nuevas posibilidades de acción. Diseñamos propuestas a medida, enfocadas en las necesidades reales de cada cliente, buscando que el aprendizaje se traduzca en mejores prácticas, vínculos más efectivos y mayor impacto en el trabajo cotidiano.',
-    image: '/servicios/servicios-capacitaciones.jpg'
+    image: '/servicios/servicios-capacitaciones.JPG'
   },
   {
     id: 3,
     title: 'Coaching',
     description:
       'En Inspira concebimos el coaching como un espacio de reflexión que permite comprender lo que una persona atraviesa en su trabajo, reconocer recursos y desarrollar nuevas formas de actuar. Acompañamos procesos orientados a fortalecer liderazgo, comunicación y desarrollo profesional, con enfoque personalizado conectado con desafíos del rol.',
-    image: '/servicios/servicios-coaching.jpg'
+    image: '/servicios/servicios-coaching.JPG'
   },
   {
     id: 4,
     title: 'Evaluaciones psicotécnicas',
     description:
       'Realizamos evaluaciones psicotécnicas para apoyar procesos de selección y decisiones de desarrollo, aportando una mirada profesional sobre el perfil y su adecuación al rol. Trabajamos cada caso de forma contextualizada, considerando competencias, función y organización, ofreciendo información clara y útil para decisiones más sólidas.',
-    image: '/servicios/servicios-evaluacionespsi.jpg'
+    image: '/servicios/servicios-evaluacionespsi.JPG'
   },
 ]
 
