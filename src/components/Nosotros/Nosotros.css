@@ -1,54 +1,41 @@
-/* Importar Montserrat desde Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
-
-/* Sección principal */
 .nosotros {
   padding-bottom: 60px;
   background-color: var(--background-color);
   position: relative;
   z-index: 10;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.nosotros--visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .nosotros-container {
-  max-width: 1200px;
+  max-width: 72rem;
   margin: 0 auto;
   padding: 0 40px;
+  position: relative;
+  z-index: 10;
 }
 
 .nosotros-pattern {
   position: absolute;
   top: -24px;
   right: -120px;
-
   width: 420px;
   height: calc(100% + 80px);
-
   background-image: url('/patrones/patron-nosotros.png');
   background-repeat: no-repeat;
   background-size: contain;
-
-  opacity: 0.2;
+  opacity: 0.12;
   z-index: 1;
   pointer-events: none;
 }
-/* Header de la sección - encapsulado */
-.nosotros-header {
-  text-align: center;
-  margin-bottom: 60px;
-}
 
-.nosotros-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 3rem;
-  font-weight: 800;
-  color: var(--text-color);
-  margin: 0;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-/* Bloque de texto institucional */
 .nosotros-texto-institucional {
   background: white;
   border: 2px solid var(--text-color);
@@ -77,7 +64,6 @@
   color: var(--text-color);
 }
 
-/* Subtítulo independiente */
 .nosotros-subtitulo {
   margin-bottom: 40px;
 }
@@ -95,7 +81,6 @@
   font-weight: 600;
 }
 
-/* Contenido principal - 2 columnas */
 .nosotros-contenido-principal {
   display: grid;
   grid-template-columns: 1.4fr 0.6fr;
@@ -104,7 +89,6 @@
   z-index: 12;
 }
 
-/* Video placeholder */
 .nosotros-video {
   background: #808080;
   border-radius: 16px;
@@ -124,7 +108,6 @@
   transform: scale(1.1);
 }
 
-/* Card de perfil */
 .nosotros-perfil-card {
   background: var(--text-color);
   border-radius: 16px;
@@ -207,6 +190,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   width: 100%;
+  min-height: 44px;
 }
 
 .perfil-boton:hover {
@@ -214,7 +198,10 @@
   border-color: var(--orange);
 }
 
-/* Responsive Design */
+.perfil-boton:active {
+  transform: scale(0.98);
+}
+
 @media (max-width: 968px) {
   .nosotros {
     padding: 80px 0;
@@ -222,10 +209,6 @@
 
   .nosotros-container {
     padding: 0 30px;
-  }
-
-  .nosotros-title {
-    font-size: 2.5rem;
   }
 
   .nosotros-texto-institucional {
@@ -244,15 +227,11 @@
 
 @media (max-width: 768px) {
   .nosotros {
-    padding: 60px 0;
+    padding: 32px 0;
   }
 
   .nosotros-container {
     padding: 0 20px;
-  }
-
-  .nosotros-title {
-    font-size: 2rem;
   }
 
   .nosotros-texto-institucional {
@@ -278,16 +257,11 @@
 
 @media (max-width: 480px) {
   .nosotros {
-    padding: 50px 0;
+    padding: 24px 0;
   }
 
   .nosotros-container {
-    padding: 0 15px;
-  }
-
-  .nosotros-title {
-    font-size: 1.8rem;
-    letter-spacing: 1px;
+    padding: 0 16px;
   }
 
   .nosotros-texto-institucional {
@@ -302,6 +276,10 @@
     min-height: 220px;
   }
 
+  .nosotros-subtitulo p {
+    font-size: 1rem;
+  }
+
   .perfil-imagen img {
     width: 90px;
     height: 90px;
@@ -309,5 +287,17 @@
 
   .perfil-nombre {
     font-size: 1.15rem;
+  }
+
+  .perfil-cargo {
+    font-size: 0.85rem;
+  }
+
+  .perfil-formacion {
+    font-size: 0.8rem;
+  }
+
+  .perfil-descripcion {
+    font-size: 0.8rem;
   }
 }

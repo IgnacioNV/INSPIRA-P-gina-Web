@@ -1,3 +1,4 @@
+import { useFadeIn } from '../../hooks/useFadeIn'
 import './Testimonios.css'
 
 const testimoniosData = [
@@ -25,8 +26,10 @@ const testimoniosData = [
 ]
 
 const Testimonios = () => {
+  const [ref, isVisible] = useFadeIn({ threshold: 0.1 })
+
   return (
-    <section className="testimonios">
+    <section className={`testimonios ${isVisible ? 'testimonios--visible' : ''}`} ref={ref}>
       <div className="testimonios-container">
         <div className="section-header">
           <h2 className="section-title">TESTIMONIOS</h2>
@@ -43,6 +46,7 @@ const Testimonios = () => {
                   src={testimonio.avatar}
                   alt={testimonio.nombre}
                   className="testimonio-avatar"
+                  loading="lazy"
                 />
                 <h3 className="testimonio-nombre">{testimonio.nombre}</h3>
                 <p className="testimonio-rol">{testimonio.rol}</p>

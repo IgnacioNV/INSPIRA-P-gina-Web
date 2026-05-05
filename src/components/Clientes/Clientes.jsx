@@ -1,8 +1,11 @@
+import { useFadeIn } from '../../hooks/useFadeIn'
 import './Clientes.css'
 
 const Clientes = () => {
+  const [ref, isVisible] = useFadeIn({ threshold: 0.15 })
+
   return (
-    <section className="clientes" id='clientes'>
+    <section className={`clientes ${isVisible ? 'clientes--visible' : ''}`} id='clientes' ref={ref}>
       <div className="clientes-container">
         <div className="section-header">
           <h2 className="section-title">CLIENTES</h2>
@@ -16,6 +19,7 @@ const Clientes = () => {
             src="/Clientes - Empresas.png" 
             alt="Empresas clientes que confían en Inspira"
             className="clientes-image"
+            loading="lazy"
           />
         </div>
       </div>

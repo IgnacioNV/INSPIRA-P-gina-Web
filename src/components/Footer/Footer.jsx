@@ -1,20 +1,25 @@
+import { useState } from 'react'
 import './Footer.css'
 import Logo from '../Logo/Logo'
 
 const Footer = () => {
+  const [formStatus, setFormStatus] = useState('idle')
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Aquí se manejaría el envío del formulario
-    console.log('Formulario enviado')
+    setFormStatus('submitting')
+    setTimeout(() => {
+      setFormStatus('success')
+      e.target.reset()
+      setTimeout(() => setFormStatus('idle'), 3000)
+    }, 1000)
   }
 
   return (
     <footer className="footer">
-      {/* Sección de contacto */}
       <section className="footer-contact" id='contacto'>
         <div className="footer-container">
           <div className="contact-content">
-            {/* Columna izquierda - Texto de invitación */}
             <div className="contact-text">
               <p>Te invitamos a que nos escribas a</p>
               <a href="mailto:info@inspira.ar" className="contact-email">
@@ -23,69 +28,76 @@ const Footer = () => {
               <p>ante cualquier duda o consulta.</p>
             </div>
 
-            {/* Columna derecha - Formulario */}
             <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-group">
+                <label htmlFor="nombre" className="sr-only">Nombre</label>
                 <input
+                  id="nombre"
                   type="text"
                   name="nombre"
                   placeholder="Nombre*"
                   required
                   className="form-input"
+                  disabled={formStatus === 'submitting'}
                 />
               </div>
               
               <div className="form-group">
+                <label htmlFor="organizacion" className="sr-only">Organización</label>
                 <input
+                  id="organizacion"
                   type="text"
                   name="organizacion"
                   placeholder="Organización"
                   className="form-input"
+                  disabled={formStatus === 'submitting'}
                 />
               </div>
               
               <div className="form-group">
+                <label htmlFor="email" className="sr-only">Email</label>
                 <input
+                  id="email"
                   type="email"
                   name="email"
                   placeholder="Email*"
                   required
                   className="form-input"
+                  disabled={formStatus === 'submitting'}
                 />
               </div>
               
               <div className="form-group">
+                <label htmlFor="mensaje" className="sr-only">Mensaje</label>
                 <textarea
+                  id="mensaje"
                   name="mensaje"
                   placeholder="Mensaje"
                   rows="4"
                   className="form-input form-textarea"
+                  disabled={formStatus === 'submitting'}
                 ></textarea>
               </div>
               
-              <button type="submit" className="contact-button">
-                Hablemos
+              <button type="submit" className="contact-button" disabled={formStatus === 'submitting'}>
+                {formStatus === 'submitting' ? 'Enviando...' : formStatus === 'success' ? '¡Enviado!' : 'Hablemos'}
               </button>
             </form>
           </div>
         </div>
       </section>
 
-      {/* Línea divisoria */}
       <div className="footer-divider"></div>
 
-      {/* Sección inferior del footer */}
       <section className="footer-main">
         <div className="footer-container">
           <div className="footer-grid">
-            {/* Columna 1 - Logo */}
             <div className="footer-column">
               <div className="footer-logo">
                 <Logo variant="dark" />
               </div>
             </div>
 
-            {/* Columna 2 - Mapa del sitio */}
             <div className="footer-column">
               <h4 className="footer-title">Mapa del sitio</h4>
               <nav className="footer-nav">
@@ -99,7 +111,6 @@ const Footer = () => {
               </nav>
             </div>
 
-            {/* Columna 3 - Ubicación */}
             <div className="footer-column">
               <h4 className="footer-title">Ubicación</h4>
               <div className="location-content">
@@ -123,7 +134,6 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Columna 4 - Redes sociales */}
             <div className="footer-column">
               <h4 className="footer-title">Seguinos en nuestras redes</h4>
               <div className="social-links">
@@ -143,7 +153,6 @@ const Footer = () => {
         </div>
       </section>
 
-      {/* Barra de copyright */}
       <section className="footer-copyright">
         <div className="footer-container">
           <p>Copyright © 2024 Inspira – Todos los derechos reservados.</p>

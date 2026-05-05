@@ -1,31 +1,35 @@
-/* Importar Montserrat desde Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
-
 .novedades {
   padding-bottom: 60px;
   background-color: var(--background-color);
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.novedades--visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .novedades-container {
-  max-width: 1200px;
+  max-width: 72rem;
   margin: 0 auto;
   padding: 0 40px;
+  position: relative;
   z-index: 10;
 }
 
-/* Grid de novedades */
+/* Desktop grid */
 .novedades-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
   margin-top: 60px;
   margin-bottom: 40px;
-  z-index: 10;
 }
 
-/* Card individual */
 .novedad-card {
   background: white;
   border-radius: 16px;
@@ -35,8 +39,6 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  z-index: 10;
-  
 }
 
 .novedad-card:hover {
@@ -44,11 +46,11 @@
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
 }
 
-/* Imagen de la novedad */
 .novedad-imagen {
   width: 100%;
   height: 220px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .novedad-imagen img {
@@ -62,7 +64,6 @@
   transform: scale(1.05);
 }
 
-/* Contenido del card */
 .novedad-contenido {
   padding: 30px 25px 25px 25px;
   flex-grow: 1;
@@ -70,7 +71,6 @@
   flex-direction: column;
 }
 
-/* Título de la novedad */
 .novedad-titulo {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.25rem;
@@ -80,7 +80,6 @@
   line-height: 1.4;
 }
 
-/* Descripción de la novedad */
 .novedad-descripcion {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.95rem;
@@ -96,7 +95,6 @@
   overflow: hidden;
 }
 
-/* Fecha de publicación */
 .novedad-fecha {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.85rem;
@@ -105,7 +103,6 @@
   margin: 0 0 15px 0;
 }
 
-/* Link "Ver nota" */
 .novedad-link {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.95rem;
@@ -120,7 +117,6 @@
   color: var(--text-color);
 }
 
-/* Footer con "Ver más notas" */
 .novedades-footer {
   display: flex;
   justify-content: flex-end;
@@ -145,21 +141,29 @@
   position: absolute;
   top: -80px;
   left: -120px;
-
   width: 420px;
   height: calc(100% + 80px);
-
   background-image: url('/patrones/patron-novedades.png');
   background-repeat: no-repeat;
   background-size: contain;
-
-  opacity: 0.2;
+  opacity: 0.1;
   z-index: 0;
   pointer-events: none;
 }
 
+/* Mobile scroll - hidden on desktop */
+.novedades-scroll {
+  display: none;
+}
 
-/* Responsive Design */
+.novedades-dots {
+  display: none;
+}
+
+.ver-mas-button {
+  display: none;
+}
+
 @media (max-width: 968px) {
   .novedades {
     padding: 80px 0;
@@ -194,19 +198,48 @@
   }
 }
 
-@media (max-width: 768px) {
-  .novedades {
-    padding: 60px 0;
-  }
-
-  .novedades-container {
-    padding: 0 20px;
-  }
-
+@media (max-width: 820px) {
   .novedades-grid {
     grid-template-columns: 1fr;
-    gap: 25px;
+    gap: 24px;
     margin-top: 40px;
+  }
+
+  .novedad-imagen {
+    height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .novedades-grid {
+    display: none;
+  }
+
+  .novedades {
+    padding: 32px 0;
+  }
+
+  .novedades-scroll {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+  }
+
+  .novedades-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .novedad-card {
+    flex: 0 0 85vw;
+    max-width: 340px;
+    scroll-snap-align: center;
+    border-radius: 12px;
   }
 
   .novedad-imagen {
@@ -214,7 +247,7 @@
   }
 
   .novedad-contenido {
-    padding: 20px 18px 18px 18px;
+    padding: 20px 18px;
   }
 
   .novedad-titulo {
@@ -235,21 +268,79 @@
     font-size: 0.9rem;
   }
 
+  .novedades-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+    margin-bottom: 24px;
+  }
+
+  .novedad-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(4, 0, 34, 0.2);
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+  }
+
+  .novedad-dot--active {
+    background-color: var(--orange);
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  .novedades-footer {
+    justify-content: center;
+    margin-top: 0;
+  }
+
+  .ver-mas-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--background-color);
+    background-color: var(--orange);
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 48px;
+  }
+
+  .ver-mas-button:hover {
+    background-color: #c06600;
+  }
+
+  .ver-mas-button:active {
+    transform: scale(0.98);
+  }
+
   .ver-mas-link {
-    font-size: 0.95rem;
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
   .novedades {
-    padding: 50px 0;
+    padding: 24px 0;
   }
 
   .novedades-container {
-    padding: 0 15px;
+    padding: 0 16px;
   }
 
   .novedad-card {
+    flex: 0 0 88vw;
     border-radius: 12px;
   }
 
@@ -258,7 +349,7 @@
   }
 
   .novedad-contenido {
-    padding: 18px 15px 15px 15px;
+    padding: 18px 15px;
   }
 
   .novedad-titulo {
@@ -274,9 +365,5 @@
   .novedad-fecha {
     font-size: 0.75rem;
     margin-bottom: 12px;
-  }
-
-  .ver-mas-link {
-    font-size: 0.9rem;
   }
 }

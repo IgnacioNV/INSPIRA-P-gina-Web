@@ -13,5 +13,17 @@
 }
 
 .logo-inspira--hero .logo-inspira__img {
-  height: 233px;
+  height: clamp(3rem, 25vw, 14.5rem);
+}
+
+@media (min-width: 769px) {
+.logo-inspira--hero .logo-inspira__img {
+  height: clamp(3rem, 20vw, 14.5rem);
+}
+
+@media (min-width: 769px) {
+  .logo-inspira--hero .logo-inspira__img {
+    height: 233px;
+  }
+}
 }

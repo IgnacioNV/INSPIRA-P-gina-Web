@@ -1,6 +1,7 @@
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,13 +32,24 @@
 .hero__content {
   position: relative;
   z-index: 1;
-  width: fit-content;
-  height: fit-content;
+  max-width: 90vw;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   gap: 0px;
+}
+
+.hero__content:not(.hero__content--visible) {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: none;
+}
+
+.hero__content.hero__content--visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .hero__content .logo-inspira {
@@ -48,20 +60,80 @@
   margin: 0 0 0.75rem;
   font-family: 'Gotham', system-ui, sans-serif;
   font-weight: 800;
-  font-size: 36px;
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
   line-height: 1.15;
   color: var(--background-color);
-  width: fit-content;
-  white-space: nowrap;
+  max-width: 22ch;
 }
 
 .hero__subtitle {
   margin: 0;
   font-family: 'Gotham', system-ui, sans-serif;
-  font-weight: 350; /* Gotham Book */
-  font-size: 28px;
+  font-weight: 350;
+  font-size: clamp(1rem, 3vw, 1.75rem);
   line-height: 1.4;
   color: var(--background-color);
-  width: fit-content;
-  white-space: nowrap;
+  max-width: 26ch;
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+  padding: 0.75rem 2rem;
+  font-family: 'Gotham', system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--background-color);
+  background-color: var(--orange);
+  border: none;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  min-height: 48px;
+  min-width: 48px;
+}
+
+.hero__cta:hover {
+  background-color: #EDA24C;
+  transform: translateY(-1px);
+}
+
+.hero__cta:active {
+  transform: translateY(0);
+}
+
+@media (min-width: 769px) {
+  .hero__content {
+    width: fit-content;
+    max-width: none;
+  }
+
+  .hero__title {
+    font-size: 36px;
+    max-width: none;
+    white-space: nowrap;
+  }
+
+  .hero__subtitle {
+    font-size: 28px;
+    max-width: none;
+    white-space: nowrap;
+  }
+
+  .hero__cta {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero {
+    padding: 1.5rem 1rem 2rem;
+    margin-bottom: 24px;
+  }
+
+  .hero__content .logo-inspira {
+    margin-bottom: 1rem;
+  }
 }

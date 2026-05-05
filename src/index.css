@@ -24,7 +24,25 @@ body {
   font-family: system-ui, -apple-system, sans-serif;
   color: var(--text-color);
   background-color: var(--background-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* Fade-in animation base */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in--delay-1 { transition-delay: 0.1s; }
+.fade-in--delay-2 { transition-delay: 0.2s; }
+.fade-in--delay-3 { transition-delay: 0.3s; }
 
 /* Header de la sección */
 .section-header {
@@ -34,7 +52,7 @@ body {
 
 .section-title {
   font-family: 'Montserrat', sans-serif;
-  font-size: 3rem;
+  font-size: clamp(1.75rem, 5vw, 3rem);
   font-weight: 800;
   color: var(--text-color);
   margin: 0 0 20px 0;
@@ -44,11 +62,17 @@ body {
 
 .section-subtitle {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.1rem;
+  font-size: clamp(0.875rem, 2.5vw, 1.1rem);
   font-weight: 400;
   color: var(--text-color);
   margin: 0;
   width: auto;
   line-height: 1.6;
   font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    letter-spacing: 1px;
+  }
 }

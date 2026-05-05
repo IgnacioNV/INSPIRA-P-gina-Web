@@ -1,20 +1,20 @@
-/* Importar Montserrat desde Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
-
 .servicios {
-  min-height: 300vh; /* Altura extendida para permitir scroll interno */
+  min-height: 300vh;
   padding-bottom: 60px;
   position: relative;
   background-color: var(--background-color);
-  /*background-image: url('/patrones/fondo-servicios.png');
-  background-size: fill;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-attachment: fixed;*/
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.servicios--visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .servicios-container {
-  max-width: 1200px;
+  max-width: 72rem;
   margin: 0 auto;
   position: sticky;
   top: 100px;
@@ -30,7 +30,7 @@
 
 .servicios-title {
   font-family: 'Montserrat', sans-serif;
-  font-size: 3rem;
+  font-size: clamp(1.75rem, 5vw, 3rem);
   font-weight: 800;
   color: var(--text-color);
   margin: 0 0 12px 0;
@@ -40,7 +40,7 @@
 
 .servicios-subtitle {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.1rem;
+  font-size: clamp(0.875rem, 2.5vw, 1.1rem);
   font-weight: 400;
   color: var(--text-color);
   margin: 0;
@@ -90,11 +90,31 @@
   transform: scale(1.05);
 }
 
-/* Responsive Design */
+/* Mobile: cards layout */
+.servicios--mobile {
+  min-height: auto;
+  padding: 32px 0;
+}
+
+.servicios--mobile .servicios-container {
+  position: static;
+  height: auto;
+  padding: 0 16px;
+}
+
+.servicios--mobile .servicios-header {
+  margin-bottom: 24px;
+}
+
+.servicios-cards {
+  display: flex;
+  flex-direction: column;
+}
+
 @media (max-width: 968px) {
   .servicios {
     min-height: auto;
-    padding: 60px 0;
+    padding: 40px 0;
   }
 
   .servicios-container {
@@ -104,36 +124,49 @@
 
   .servicios-content {
     grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .servicios-title {
-    font-size: 2.5rem;
-  }
-
-  .servicios-subtitle {
-    font-size: 1rem;
+    gap: 32px;
   }
 
   .image-container {
     max-width: 400px;
-  }
-}
-
-@media (max-width: 768px) {
-  .servicios-container {
-    padding: 0 15px;
+    margin: 0 auto;
   }
 
   .servicios-title {
-    font-size: 2rem;
+    letter-spacing: 1px;
   }
 
-  .servicios-subtitle {
-    font-size: 0.9rem;
+  .servicios--mobile {
+    padding: 32px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .servicios {
+    padding: 24px 0;
   }
 
-  .servicios-header {
-    margin-bottom: 40px;
+  .servicios--mobile {
+    padding: 24px 0;
+  }
+
+  .servicios--mobile .servicios-container {
+    padding: 0 12px;
+  }
+
+  .service-card__image {
+    height: 180px;
+  }
+
+  .service-card__content {
+    padding: 16px;
+  }
+
+  .service-card__title {
+    font-size: 1.0625rem;
+  }
+
+  .service-card__description {
+    font-size: 0.85rem;
   }
 }
