@@ -333,7 +333,7 @@
 @media (max-width: 480px) {
   .novedades-container {
     max-width: none;
-    padding: 0 40px;
+    padding: 0 100px;
   }
 
   .novedades {
