@@ -59,7 +59,7 @@
 .hero__title {
   margin: 0 0 0.75rem;
   font-family: 'Montserrat', system-ui, sans-serif;
-  font-weight: 800;
+  font-weight: 600;
   font-size: clamp(1.75rem, 5vw, 2.25rem);
   line-height: 1.15;
   color: var(--background-color);
@@ -69,7 +69,11 @@
 .hero__subtitle {
   margin: 0;
   font-family: 'Montserrat', system-ui, sans-serif;
+<<<<<<< HEAD
   font-weight: 300;
+=======
+  font-weight: 350;
+>>>>>>> changes_with_claude
   font-size: clamp(1rem, 3vw, 1.75rem);
   line-height: 1.4;
   color: var(--background-color);
@@ -124,6 +128,12 @@
 
   .hero__cta {
     display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero__title {
+    font-weight: 600;
   }
 }
 

@@ -358,6 +358,7 @@
 /* Móvil */
 @media (max-width: 480px) {
   .footer-container {
+    max-width: 390px;
     padding: 0 20px;
   }
   
