@@ -66,7 +66,8 @@
 
 @media (max-width: 480px) {
   .clientes-container {
-    max-width: 390px;
+    max-width: none;
+    padding: 0 40px;
   }
 
   .clientes {

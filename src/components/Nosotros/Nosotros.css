@@ -257,7 +257,8 @@
 
 @media (max-width: 480px) {
   .nosotros-container {
-    max-width: 390px;
+    max-width: none;
+    padding: 0 40px;
   }
 
   .nosotros {

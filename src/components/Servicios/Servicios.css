@@ -25,7 +25,8 @@
 
 @media (max-width: 480px) {
   .servicios-container {
-    max-width: 390px;
+    max-width: none;
+    padding: 0 40px;
   }
 }
 
