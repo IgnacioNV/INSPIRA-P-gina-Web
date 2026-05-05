@@ -198,7 +198,7 @@
   .testimonios-grid {
     grid-template-columns: 1fr;
     gap: 25px;
-    max-width: 420px;
+    max-width: 390px;
     margin: 0 auto;
   }
 
@@ -230,6 +230,10 @@
 }
 
 @media (max-width: 480px) {
+  .testimonios-container {
+    max-width: 390px;
+  }
+
   .testimonios {
     padding: 24px 0;
   }

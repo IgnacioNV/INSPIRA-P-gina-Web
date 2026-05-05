@@ -23,6 +23,12 @@
   flex-direction: column;
 }
 
+@media (max-width: 480px) {
+  .servicios-container {
+    max-width: 390px;
+  }
+}
+
 .servicios-header {
   text-align: center;
   margin-bottom: 16px;

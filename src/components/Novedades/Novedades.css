@@ -331,6 +331,10 @@
 }
 
 @media (max-width: 480px) {
+  .novedades-container {
+    max-width: 390px;
+  }
+
   .novedades {
     padding: 24px 0;
   }

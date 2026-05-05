@@ -256,6 +256,10 @@
 }
 
 @media (max-width: 480px) {
+  .nosotros-container {
+    max-width: 390px;
+  }
+
   .nosotros {
     padding: 24px 0;
   }
