@@ -5,25 +5,25 @@ import './Novedades.css'
 const novedadesData = [
   {
     id: 1,
-    titulo: 'Título de la nota',
-    descripcion: 'Lorem ipsum dolor sit amet consectetur. Ultrices pellentesque sed tortor gravida nibh pulvinar morbi. Vitae enim a faucibus sapien orci urna suspendisse neque. Convallis enim vestibulum ut aliquam ult...',
-    fecha: '11/2/2026',
+    titulo: 'Liderazgo situacional: por qué un solo estilo nunca alcanza',
+    descripcion: 'Los líderes más efectivos no tienen un único modo de conducción. Aprenden a leer el nivel de madurez de cada colaborador y adaptan su enfoque. En este artículo exploramos los cuatro estilos del modelo y cómo aplicarlos en tu equipo.',
+    fecha: '15/4/2025',
     imagen: '/novedades/nota-1.svg',
     link: '#'
   },
   {
     id: 2,
-    titulo: 'Título de la nota',
-    descripcion: 'Lorem ipsum dolor sit amet consectetur. Ultrices pellentesque sed tortor gravida nibh pulvinar morbi. Vitae enim a faucibus sapien orci urna suspendisse neque. Convallis enim vestibulum ut aliquam ult...',
-    fecha: '11/2/2026',
+    titulo: 'Cómo diseñar una entrevista por competencias que realmente prediga el desempeño',
+    descripcion: 'Las preguntas genéricas no sirven. La entrevista por competencias parte de comportamientos concretos del pasado para inferir conductas futuras. Te compartimos el modelo STAR y cómo construir una guía de entrevista sólida.',
+    fecha: '2/3/2025',
     imagen: '/novedades/nota-2.svg',
     link: '#'
   },
   {
     id: 3,
-    titulo: 'Título de la nota',
-    descripcion: 'Lorem ipsum dolor sit amet consectetur. Ultrices pellentesque sed tortor gravida nibh pulvinar morbi. Vitae enim a faucibus sapien orci urna suspendisse neque. Convallis enim vestibulum ut aliquam ult...',
-    fecha: '11/2/2026',
+    titulo: 'Cultura organizacional: el activo invisible que más impacta en la retención',
+    descripcion: 'Las personas no renuncian a empresas, renuncian a culturas. Analizamos los factores culturales que más inciden en la decisión de quedarse o irse, y qué pueden hacer los líderes para intervenir con criterio.',
+    fecha: '18/1/2025',
     imagen: '/novedades/nota-3.svg',
     link: '#'
   }

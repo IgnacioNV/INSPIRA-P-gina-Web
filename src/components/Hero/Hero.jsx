@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import Logo from '../Logo/Logo'
 import './Hero.css'
 
 function Hero() {
@@ -18,12 +17,11 @@ function Hero() {
       <div className="hero__bg" aria-hidden="true" />
       <div className="hero__overlay" aria-hidden="true" />
       <div className={`hero__content ${isVisible ? 'hero__content--visible' : ''}`}>
-        <Logo variant="dark" className="logo-inspira--hero" />
         <h1 className="hero__title" id="hero-title">
-          Consultoría en Recursos Humanos
+          El talento no se encuentra.<br />Se construye.
         </h1>
         <p className="hero__subtitle">
-          Desarrollamos líderes y equipos que transforman organizaciones.
+          Acompañamos a líderes y organizaciones a transformar su cultura desde adentro.
         </p>
         <a
           href="#contacto"

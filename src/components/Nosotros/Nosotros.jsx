@@ -49,7 +49,7 @@ function Nosotros() {
                 <span className="titulo-destacado">Maestría de Recursos Humanos</span> en la Universidad de San Andrés
               </p>
               <p className="perfil-descripcion">
-                Amplia trayectoria en capacitaciones de líderes de empresas, búsqueda y...
+                Amplia trayectoria en capacitaciones de líderes, búsqueda y selección ejecutiva, coaching y desarrollo organizacional. Trabaja con empresas de distintos sectores acompañando procesos de transformación cultural y fortalecimiento de equipos.
               </p>
               <button className="perfil-boton">Conoce más sobre Federico</button>
             </div>

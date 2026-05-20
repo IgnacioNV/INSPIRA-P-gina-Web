@@ -24,9 +24,8 @@
 
 .hero__overlay {
   position: absolute;
-  right: 0;
-  bottom: 0;
-  background: color-mix(in srgb, var(--text-color) 65%, transparent);
+  inset: 0;
+  background: color-mix(in srgb, var(--text-color) 55%, transparent);
 }
 
 .hero__content {
@@ -69,7 +68,7 @@
 .hero__subtitle {
   margin: 0;
   font-family: 'Montserrat', system-ui, sans-serif;
-  font-weight: 350;
+  font-weight: 300;
   font-size: clamp(1rem, 3vw, 1.75rem);
   line-height: 1.4;
   color: var(--background-color);
@@ -111,19 +110,24 @@
   }
 
   .hero__title {
-    font-size: 36px;
+    font-size: 42px;
     max-width: none;
-    white-space: nowrap;
+    white-space: normal;
+    text-align: center;
   }
 
   .hero__subtitle {
-    font-size: 28px;
+    font-size: 22px;
     max-width: none;
-    white-space: nowrap;
+    white-space: normal;
+    text-align: center;
+    max-width: 36ch;
   }
 
   .hero__cta {
-    display: none;
+    margin-top: 2rem;
+    padding: 0.875rem 2.5rem;
+    font-size: 1.0625rem;
   }
 }
 
