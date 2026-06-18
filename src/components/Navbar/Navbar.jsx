@@ -5,7 +5,6 @@ import './Navbar.css'
 const NAV_ITEMS = [
   { label: 'Servicios', id: 'servicios' },
   { label: 'Clientes', id: 'clientes' },
-  { label: 'Novedades', id: 'novedades' },
   { label: 'Nosotros', id: 'nosotros' },
 ]
 
