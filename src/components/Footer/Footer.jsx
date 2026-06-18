@@ -104,7 +104,6 @@ const Footer = () => {
                 <ul className="footer-links">
                   <li><a href="#servicios">Servicios</a></li>
                   <li><a href="#clientes">Clientes</a></li>
-                  <li><a href="#novedades">Novedades</a></li>
                   <li><a href="#nosotros">Nosotros</a></li>
                   <li><a href="#contacto">Contacto</a></li>
                 </ul>
