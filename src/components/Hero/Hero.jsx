@@ -31,6 +31,9 @@ function Hero() {
           onClick={(e) => {
             e.preventDefault()
             document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            setTimeout(() => {
+              document.getElementById('nombre')?.focus()
+            }, 700)
           }}
         >
           Conversemos
