@@ -4,15 +4,42 @@ import Logo from '../Logo/Logo'
 
 const Footer = () => {
   const [formStatus, setFormStatus] = useState('idle')
+  const [errorMsg, setErrorMsg] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setFormStatus('submitting')
-    setTimeout(() => {
-      setFormStatus('success')
-      e.target.reset()
-      setTimeout(() => setFormStatus('idle'), 3000)
-    }, 1000)
+    setErrorMsg('')
+
+    const form = e.target
+    const data = {
+      nombre: form.nombre.value,
+      organizacion: form.organizacion.value,
+      email: form.email.value,
+      mensaje: form.mensaje.value,
+    }
+
+    try {
+      const res = await fetch('/api/contacto', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+
+      if (res.ok) {
+        setFormStatus('success')
+        form.reset()
+        setTimeout(() => setFormStatus('idle'), 4000)
+      } else {
+        setFormStatus('error')
+        setErrorMsg('Hubo un problema al enviar el mensaje. Por favor intentá de nuevo.')
+        setTimeout(() => setFormStatus('idle'), 4000)
+      }
+    } catch {
+      setFormStatus('error')
+      setErrorMsg('No se pudo conectar con el servidor. Por favor intentá de nuevo.')
+      setTimeout(() => setFormStatus('idle'), 4000)
+    }
   }
 
   return (
@@ -78,9 +105,15 @@ const Footer = () => {
                   disabled={formStatus === 'submitting'}
                 ></textarea>
               </div>
+
+              {formStatus === 'error' && (
+                <p style={{ color: '#e53e3e', fontSize: '14px', marginBottom: '8px' }}>
+                  {errorMsg}
+                </p>
+              )}
               
               <button type="submit" className="contact-button" disabled={formStatus === 'submitting'}>
-                {formStatus === 'submitting' ? 'Enviando...' : formStatus === 'success' ? '¡Enviado!' : 'Hablemos'}
+                {formStatus === 'submitting' ? 'Enviando...' : formStatus === 'success' ? '¡Mensaje enviado!' : 'Hablemos'}
               </button>
             </form>
           </div>
