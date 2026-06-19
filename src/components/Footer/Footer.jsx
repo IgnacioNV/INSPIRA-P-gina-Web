@@ -187,7 +187,7 @@ const Footer = () => {
 
       <section className="footer-copyright">
         <div className="footer-container">
-          <p>Copyright © 2024 Inspira – Todos los derechos reservados.</p>
+          <p>Copyright © {new Date().getFullYear()} Inspira – Todos los derechos reservados.</p>
         </div>
       </section>
     </footer>
