@@ -13,6 +13,22 @@ function Hero() {
     return () => {}
   }, [])
 
+  const handleConversemos = (e) => {
+    e.preventDefault()
+    const contacto = document.getElementById('contacto')
+    const nombre = document.getElementById('nombre')
+
+    if (!contacto || !nombre) return
+
+    // Scroll instantáneo para que el focus no se cancele durante la animación
+    contacto.scrollIntoView({ behavior: 'instant', block: 'start' })
+
+    // Focus inmediato después del scroll instantáneo
+    requestAnimationFrame(() => {
+      nombre.focus()
+    })
+  }
+
   return (
     <section id="inicio" className="hero" aria-labelledby="hero-title">
       <div className="hero__bg" aria-hidden="true" />
@@ -28,13 +44,7 @@ function Hero() {
         <a
           href="#contacto"
           className="hero__cta"
-          onClick={(e) => {
-            e.preventDefault()
-            document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-            setTimeout(() => {
-              document.getElementById('nombre')?.focus()
-            }, 700)
-          }}
+          onClick={handleConversemos}
         >
           Conversemos
         </a>
