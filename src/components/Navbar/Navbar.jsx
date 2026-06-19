@@ -35,6 +35,18 @@ function Navbar() {
     [scrollTo]
   )
 
+  const handleConversemos = useCallback((e) => {
+    e.preventDefault()
+    setIsOpen(false)
+    const contacto = document.getElementById('contacto')
+    const nombre = document.getElementById('nombre')
+    if (!contacto || !nombre) return
+    contacto.scrollIntoView({ behavior: 'instant', block: 'start' })
+    requestAnimationFrame(() => {
+      nombre.focus()
+    })
+  }, [])
+
   const handleLogoClick = useCallback(
     (e) => {
       e.preventDefault()
@@ -111,10 +123,7 @@ function Navbar() {
           <a
             href="#contacto"
             className="navbar__button"
-            onClick={(e) => {
-              e.preventDefault()
-              handleLinkClick('contacto')
-            }}
+            onClick={handleConversemos}
           >
             Conversemos
           </a>
@@ -154,10 +163,7 @@ function Navbar() {
             <a
               href="#contacto"
               className="navbar__button navbar__button--mobile"
-              onClick={(e) => {
-                e.preventDefault()
-                handleLinkClick('contacto')
-              }}
+              onClick={handleConversemos}
             >
               Conversemos
             </a>
