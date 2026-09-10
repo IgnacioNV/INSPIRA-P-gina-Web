@@ -1,0 +1,87 @@
+.hero {
+  --hero-photo: none; /* TODO(foto-hero): setear url("/hero/<archivo>") cuando exista la foto real */
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-height: min(72vh, 640px);
+  padding-block: var(--sp-24);
+  background-color: var(--c-navy);
+  overflow: hidden;
+}
+
+/* Capa de foto (oculta hasta que --hero-photo tenga una url) */
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: var(--hero-photo);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Overlay navy — para que el texto respire sobre la foto.
+   Sin foto queda navy sobre navy (invisible), asi que no molesta. */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to right,
+    rgba(4, 0, 34, 0.82) 0%,
+    rgba(4, 0, 34, 0.62) 60%,
+    rgba(4, 0, 34, 0.5) 100%
+  );
+}
+
+.hero__pattern {
+  z-index: -1;
+  opacity: 0.16; /* discreto — no compite con el texto (manual §04) */
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-8);
+  max-width: 780px;
+
+  /* fade-in + leve movimiento vertical al cargar (12-16px) */
+  animation: hero-enter 0.7s var(--ease-out) both;
+}
+
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--reveal-shift));
+  }
+}
+
+.hero__logo {
+  height: 34px;
+}
+
+.hero__title {
+  color: var(--c-white);
+  max-width: 15ch;
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__content {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    min-height: 0;
+    padding-block: var(--sp-16);
+  }
+  .hero__content {
+    gap: var(--sp-6);
+  }
+}

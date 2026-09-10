@@ -1,0 +1,24 @@
+/* ============================================================
+   Inspira — Utilidades de reveal / motion
+   Todo esto queda neutralizado por prefers-reduced-motion (ver base.css).
+   ============================================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-shift));
+  transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

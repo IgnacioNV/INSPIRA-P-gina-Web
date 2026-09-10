@@ -1,25 +1,24 @@
-import Navbar from './components/Navbar/Navbar'
-import Hero from './components/Hero/Hero'
-import Servicios from './components/Servicios/Servicios'
-import Clientes from './components/Clientes/Clientes'
-// Ocultas temporalmente hasta completar contenido. No borrar.
-// import Testimonios from './components/Testimonios/Testimonios'
-// import Novedades from './components/Novedades/Novedades'
-import Nosotros from './components/Nosotros/Nosotros'
-import Footer from './components/Footer/Footer'
+import { Routes, Route } from 'react-router-dom'
+import Navbar from './components/layout/Navbar'
+import Footer from './components/layout/Footer'
+import Home from './pages/Home'
+import ServiceDetail from './pages/ServiceDetail'
+import Nosotros from './pages/Nosotros'
 
 function App() {
   return (
     <>
+      <a href="#contenido" className="u-skip-link">
+        Saltar al contenido
+      </a>
       <Navbar />
-      <main>
-        <Hero />
-        <Servicios />
-        <Clientes />
-        {/* Ocultas temporalmente hasta completar contenido. No borrar. */}
-        {/* <Testimonios /> */}
-        {/* <Novedades /> */}
-        <Nosotros />
+      <main id="contenido">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/servicios/:slug" element={<ServiceDetail />} />
+          <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
       </main>
       <Footer />
     </>

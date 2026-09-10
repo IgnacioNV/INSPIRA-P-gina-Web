@@ -1,0 +1,123 @@
+.services {
+  background-color: var(--c-cream);
+  text-align: center;
+}
+
+.services__overline {
+  color: var(--c-orange);
+  margin-bottom: var(--sp-3);
+}
+
+.services__title {
+  margin-bottom: var(--sp-12);
+  margin-inline: auto;
+  max-width: 22ch;
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-6);
+  margin: 0;
+  text-align: left;
+}
+
+.services__item {
+  min-width: 0;
+  opacity: 0;
+  transform: translateY(var(--reveal-shift));
+}
+.services__grid.is-visible .services__item {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.services__card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  min-height: 220px;
+  padding: var(--sp-6);
+  background-color: var(--c-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--c-navy);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.services__card:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* patron de fondo — bajo, para no competir con el texto */
+.services__card-bg {
+  z-index: -1;
+  opacity: 0.14;
+}
+
+.services__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin-top: auto;
+}
+
+.services__name {
+  color: var(--c-navy);
+}
+
+.services__hook {
+  color: var(--c-navy);
+  opacity: 0.7;
+  max-width: 24ch;
+}
+
+.services__arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  margin-top: var(--sp-3);
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--c-orange);
+}
+.services__arrow svg {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.services__card:hover .services__arrow svg {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services__item {
+    opacity: 1;
+    transform: none;
+  }
+  .services__card:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .services__grid {
+    grid-template-columns: 1fr;
+  }
+  .services__card {
+    min-height: 160px;
+  }
+}
