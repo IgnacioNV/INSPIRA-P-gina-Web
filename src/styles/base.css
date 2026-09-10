@@ -143,6 +143,19 @@ ol[class] {
   font-weight: var(--fw-h1);
   letter-spacing: -0.01em;
 }
+
+/* En pantallas chicas, Display y H1 bajan un escalón del sistema
+   (no son tamaños nuevos: Display -> metrica H1, H1 -> metrica H2). */
+@media (max-width: 600px) {
+  .t-display {
+    font-size: var(--fs-h1);
+    line-height: var(--lh-h1);
+  }
+  .t-h1 {
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2);
+  }
+}
 .t-h2 {
   font-size: var(--fs-h2);
   line-height: var(--lh-h2);
