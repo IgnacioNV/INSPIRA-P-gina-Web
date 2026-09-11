@@ -62,7 +62,7 @@ function Nosotros() {
         <div className="nosotros-page__federico-grid">
           <div className="nosotros-page__video">
             {/* TODO(video): placeholder — en producción tampoco hay video real cargado */}
-            <ArcPattern variant="navy-crema" fade="none" scale={140} />
+            <ArcPattern variant="navy-crema" fade="none" scale={380} />
             <span className="nosotros-page__play" aria-hidden="true">
               <svg viewBox="0 0 60 60" fill="none">
                 <circle cx="30" cy="30" r="29" fill="var(--c-white)" />

@@ -12,7 +12,7 @@ function FinalCta() {
 
   return (
     <section className="final-cta" data-surface="dark" aria-labelledby="final-cta-title" ref={ref}>
-      <ArcPattern variant="crema-navy" fade="down" scale={280} className="final-cta__pattern" />
+      <ArcPattern variant="crema-navy" fade="down" scale={560} className="final-cta__pattern" />
       <div className={`final-cta__content u-container ${visible ? 'reveal is-visible' : 'reveal'}`}>
         {/* TODO(copy): frase de cierre BORRADOR — calida, corta, sobre lo humano. Revisar con Fede. */}
         <h2 id="final-cta-title" className="final-cta__title t-h1">

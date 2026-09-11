@@ -1,7 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import Logo from '../ui/Logo'
 import Button from '../ui/Button'
-import ArcPattern from '../ui/ArcPattern'
 import { makeHashHandler } from '../../lib/goToHash'
 import './Hero.css'
 
@@ -21,7 +20,6 @@ function Hero() {
     <section id="inicio" className="hero" data-surface="dark" aria-labelledby="hero-title">
       <div className="hero__photo" aria-hidden="true" />
       <div className="hero__overlay" aria-hidden="true" />
-      <ArcPattern variant="crema-navy" fade="up" scale={260} className="hero__pattern" />
 
       <div className="hero__content u-container">
         <Logo tone="white" className="hero__logo" />

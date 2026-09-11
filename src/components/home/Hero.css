@@ -45,11 +45,6 @@
   );
 }
 
-.hero__pattern {
-  z-index: -1;
-  opacity: 0.16; /* discreto — no compite con el texto (manual §04) */
-}
-
 .hero__content {
   position: relative;
   z-index: 1;

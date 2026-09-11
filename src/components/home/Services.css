@@ -5,19 +5,32 @@
   padding-top: var(--sp-24);
 }
 
-/* ---- Header: a propósito NO sigue el patrón "centrado" del resto del sitio ---- */
+/* ---- Header: a propósito NO sigue el patrón "centrado" del resto del sitio ----
+   Texto a la izquierda + bloque de patrón grande (40%) a la derecha. */
 .services__header {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  max-width: 640px;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-12);
   margin-bottom: var(--sp-12);
   padding-block: var(--sp-4);
 }
 
-.services__header-pattern {
-  z-index: -1;
-  opacity: 0.12;
+.services__header-text {
+  flex: 1 1 60%;
+  min-width: 0;
+  max-width: 640px;
+}
+
+/* Bloque de patrón — 40% del ancho del header, un elemento de diseño
+   propio, no una textura escondida detrás del título. Un solo tile grande
+   (scale alto) para que no se sienta repetitivo. */
+.services__header-pattern-block {
+  flex: 0 0 40%;
+  align-self: stretch;
+  min-height: 220px;
+  position: relative;
+  border-radius: var(--radius-card);
+  overflow: hidden;
 }
 
 .services__overline {
@@ -27,6 +40,18 @@
 
 .services__title {
   max-width: 26ch;
+}
+
+@media (max-width: 760px) {
+  .services__header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-6);
+  }
+  .services__header-pattern-block {
+    flex-basis: auto;
+    min-height: 140px;
+  }
 }
 
 /* ---- Lista de cards: apiladas a todo el ancho, no una fila apretada ---- */

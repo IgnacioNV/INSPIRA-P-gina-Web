@@ -3,71 +3,104 @@
   text-align: center;
 }
 
+/* ============================================================
+   Pin (desktop): el wrapper es mas alto que la pantalla; el bloque
+   interno queda "sticky" mientras el usuario scrollea ese extra, dando
+   tiempo a que los 41 logos terminen de aparecer antes de soltar la
+   pagina hacia la siguiente seccion. Scroll nativo intacto: no hay
+   preventDefault ni manejo de wheel/touch, solo se LEE la posicion.
+   ============================================================ */
+.social-proof__pin-wrap.is-pinned {
+  position: relative;
+  height: 260vh;
+}
+
+.social-proof__pin-wrap.is-pinned .social-proof__pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Mobile / reduced-motion: sin pin, flujo normal */
+.social-proof__pin-wrap:not(.is-pinned) .social-proof__pin {
+  padding-block: var(--sp-16);
+}
+
 .social-proof__overline {
   color: var(--c-orange);
-  margin-bottom: var(--sp-3);
+  margin-bottom: var(--sp-2);
 }
 
 .social-proof__title {
-  margin-bottom: var(--sp-12);
+  margin-bottom: var(--sp-8);
 }
 
-/* Flex (no grid): con flex-wrap + justify-content:center, la ultima fila
-   incompleta queda centrada en vez de pegada a la izquierda. */
+/* ---- Grilla: sin caja/fondo por logo — imagen directo sobre la seccion ---- */
 .social-proof__grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--sp-4);
+  align-content: center;
+  gap: var(--sp-3);
   margin: 0;
 }
 
-/* Caja grande: 5 por fila en desktop (antes 6, mas chicas) */
 .social-proof__cell {
-  flex: 0 1 calc((100% - 4 * var(--sp-4)) / 5);
-  min-width: 140px;
+  flex: 0 1 calc((100% - 8 * var(--sp-3)) / 9);
+  min-width: 90px;
+  max-width: 140px;
+  aspect-ratio: 16 / 9;
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 16 / 9;
-  padding: var(--sp-2);
-  background-color: var(--c-white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  transition: box-shadow var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
-}
 
-/* Reveal on scroll: mas rapido y con un desplazamiento mas chico que el
-   ".reveal" generico del sitio (600ms/14px) — un logo es un elemento chico,
-   necesita un "pop" corto, no un movimiento grande. Una vez visible, queda
-   visible (useReveal es "once"): no se repite al volver a cruzar el viewport. */
-.social-proof__cell.reveal {
-  --reveal-shift: 10px;
-  transition: opacity 0.28s var(--ease-out), transform 0.28s var(--ease-out),
-    box-shadow var(--dur-fast) var(--ease-out);
+  /* Reveal: cada logo, corto y con stagger — controlado por el componente
+     via is-visible + --reveal-delay, no por scroll individual. */
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
-/* Los archivos ya vienen pre-procesados a blanco y negro y recortados al
-   contenido (src/data/clients.js) — sin filter en runtime. Object-fit:contain
-   asegura que no se pierda nada del logo; el recorte + poco padding hacen
-   que igual llene casi toda la caja. Sin "hover a color": no se reintroduce
-   el color de marca de terceros. El hover es solo una leve elevacion. */
+.social-proof__cell.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .social-proof__logo {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
-/* .is-visible en el selector: gana por especificidad al transform:none que
-   deja ".reveal.is-visible" (motion.css), sin depender del orden de bundle. */
-.social-proof__cell.is-visible:hover {
-  box-shadow: var(--shadow-card);
-  transform: translateY(-2px);
+
+@media (prefers-reduced-motion: reduce) {
+  .social-proof__cell {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1100px) {
+  .social-proof__cell {
+    flex-basis: calc((100% - 6 * var(--sp-3)) / 7);
+  }
 }
 
 @media (max-width: 900px) {
+  /* Sin pin acá: la sección respira normal, logos un poco mas grandes */
   .social-proof__cell {
-    flex-basis: calc((100% - 3 * var(--sp-4)) / 4);
+    flex-basis: calc((100% - 4 * var(--sp-4)) / 5);
+    max-width: none;
+    min-width: 110px;
+  }
+  .social-proof__grid {
+    gap: var(--sp-4);
   }
 }
 
@@ -79,7 +112,7 @@
     gap: var(--sp-3);
   }
   .social-proof__title {
-    margin-bottom: var(--sp-8);
+    margin-bottom: var(--sp-6);
   }
 }
 

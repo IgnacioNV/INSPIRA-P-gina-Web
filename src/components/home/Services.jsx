@@ -112,16 +112,17 @@ function Services() {
     <section id="servicios" className="services" aria-labelledby="services-title" ref={ref}>
       <div className="u-container">
         <div className="services__header">
-          <ArcPattern
-            variant="durazno-crema"
-            fade="none"
-            scale={200}
-            className="services__header-pattern"
-          />
-          <p className="services__overline t-overline">Qué hacemos</p>
-          <h2 id="services-title" className="t-section-title services__title">
-            Cuatro formas de acompañar a tu organización
-          </h2>
+          <div className="services__header-text">
+            <p className="services__overline t-overline">Qué hacemos</p>
+            <h2 id="services-title" className="t-section-title services__title">
+              Cuatro formas de acompañar a tu organización
+            </h2>
+          </div>
+          {/* Bloque de patrón grande (40% del ancho) — elemento de diseño, no
+              una textura de fondo sutil detrás del texto. */}
+          <div className="services__header-pattern-block" aria-hidden="true">
+            <ArcPattern variant="durazno-crema" fade="none" scale={620} />
+          </div>
         </div>
 
         <ul className={`services__list ${visible ? 'is-visible' : ''}`}>
