@@ -59,6 +59,10 @@ function validate(values) {
   } else if (!EMAIL_RE.test(values.email.trim())) {
     errors.email = 'Ingresá un email con formato válido.'
   }
+  if (!values.experienciaLaboral.trim()) {
+    errors.experienciaLaboral =
+      'Contanos tu experiencia laboral — si no tenés, escribí "Todavía no tengo experiencia laboral".'
+  }
   return errors
 }
 
@@ -79,6 +83,7 @@ function FormUp() {
 
   const nombreRef = useRef(null)
   const emailRef = useRef(null)
+  const experienciaLaboralRef = useRef(null)
 
   // Se recalcula en cada render a partir de values — permite marcar
   // errores a medida que el usuario completa, no solo al enviar.
@@ -120,6 +125,7 @@ function FormUp() {
   function focusFirstError(foundErrors) {
     if (foundErrors.nombre) nombreRef.current?.focus()
     else if (foundErrors.email) emailRef.current?.focus()
+    else if (foundErrors.experienciaLaboral) experienciaLaboralRef.current?.focus()
   }
 
   async function handleSubmit(e) {
@@ -280,15 +286,39 @@ function FormUp() {
 
           <div className="formup__field">
             <label htmlFor="experienciaLaboral">
-              Contanos brevemente tu experiencia laboral, si tenés
+              Contanos brevemente tu experiencia laboral{' '}
+              <span aria-hidden="true">*</span>
             </label>
+            <p className="formup__hint" id="experienciaLaboral-hint">
+              Si todavía no tenés, escribí "Todavía no tengo experiencia
+              laboral".
+            </p>
             <textarea
+              ref={experienciaLaboralRef}
               id="experienciaLaboral"
               name="experienciaLaboral"
               rows={4}
+              placeholder='Ej: "Todavía no tengo experiencia laboral"'
               value={values.experienciaLaboral}
               onChange={(e) => setField('experienciaLaboral', e.target.value)}
+              onBlur={() => markTouched('experienciaLaboral')}
+              aria-required="true"
+              aria-invalid={Boolean(fieldError('experienciaLaboral'))}
+              aria-describedby={
+                fieldError('experienciaLaboral')
+                  ? 'experienciaLaboral-hint experienciaLaboral-error'
+                  : 'experienciaLaboral-hint'
+              }
             />
+            {fieldError('experienciaLaboral') && (
+              <p
+                id="experienciaLaboral-error"
+                className="formup__field-error"
+                role="alert"
+              >
+                {fieldError('experienciaLaboral')}
+              </p>
+            )}
           </div>
 
           <fieldset className="formup__fieldset">
