@@ -6,30 +6,44 @@
   transition: box-shadow var(--dur-fast) var(--ease-out);
 }
 
-/* Leve sombra al hacer scroll */
-.navbar--scrolled {
+/* Sombra sólo una vez que pasás el hero */
+.navbar--condensed {
   box-shadow: var(--shadow-navbar);
 }
 
+/* ---- Layout: grid de 4 columnas ----
+   [logo] [spacer-izq 1fr] [links auto] [spacer-der 0fr → 1fr]
+   Sobre el hero: spacer-der = 0fr → los links quedan a la derecha, separados
+   del logo. Al pasar el hero: spacer-der = 1fr = spacer-izq → los links se
+   deslizan al centro, a la misma distancia del logo y del botón.
+   El CTA va absolute: no ocupa columna, no empuja ni recorta la grilla. */
 .navbar__inner {
-  display: flex;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto 0fr;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-6);
   height: var(--navbar-h);
+  transition: grid-template-columns 0.5s var(--ease-out);
+}
+
+.navbar--condensed .navbar__inner {
+  grid-template-columns: auto 1fr auto 1fr;
 }
 
 .navbar__brand {
   display: inline-flex;
   align-items: center;
-  flex-shrink: 0;
 }
 
-/* ---- Nav desktop ---- */
+.navbar__spacer {
+  display: block;
+}
+
+/* ---- Links ---- */
 .navbar__desktop {
   display: flex;
   align-items: center;
-  gap: var(--sp-8);
+  justify-content: center;
 }
 
 .navbar__list {
@@ -46,11 +60,45 @@
   text-decoration: none;
   padding: var(--sp-1) 0;
   border-bottom: 1.5px solid transparent;
-  transition: border-color var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+  transition: border-color var(--dur-fast) var(--ease-out);
+  white-space: nowrap;
 }
 
 .navbar__link:hover {
   border-bottom-color: var(--c-orange);
+}
+
+/* ---- CTA que aparece al pasar el hero (absolute: no ocupa columna) ---- */
+.navbar__cta-slot {
+  position: absolute;
+  right: var(--gutter);
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar__cta {
+  opacity: 0;
+  transform: translateY(-6px) scale(0.94);
+  transform-origin: right center;
+  transition: opacity 0.3s var(--ease-out), transform 0.4s var(--ease-out);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.navbar--condensed .navbar__cta {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.12s;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar__inner,
+  .navbar__cta {
+    transition: none;
+  }
 }
 
 /* ---- Toggle mobile ---- */
@@ -136,7 +184,13 @@
 
 /* ---- Breakpoint ---- */
 @media (max-width: 960px) {
-  .navbar__desktop {
+  .navbar__inner {
+    display: flex;
+    justify-content: space-between;
+  }
+  .navbar__spacer,
+  .navbar__desktop,
+  .navbar__cta-slot {
     display: none;
   }
   .navbar__toggle {

@@ -8,16 +8,36 @@ import './Navbar.css'
 
 function Navbar() {
   const [open, setOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  // "condensed" = el usuario ya pasó el hero: aparece sombra + el CTA en la
+  // navbar y los links se centran entre el logo y el botón.
+  const [condensed, setCondensed] = useState(false)
   const navigate = useNavigate()
   const { pathname } = useLocation()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
-    onScroll()
+    let raf = 0
+    const update = () => {
+      raf = 0
+      const hero = document.getElementById('inicio')
+      if (!hero) {
+        // Rutas sin hero (servicios, nosotros): el CTA va siempre visible.
+        setCondensed(true)
+        return
+      }
+      setCondensed(hero.getBoundingClientRect().bottom <= 72)
+    }
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update)
+    }
+    update()
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+      if (raf) cancelAnimationFrame(raf)
+    }
+  }, [pathname])
 
   // Cerrar menu al cambiar de ruta
   useEffect(() => {
@@ -48,18 +68,21 @@ function Navbar() {
   )
 
   return (
-    <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
+    <header className={`navbar ${condensed ? 'navbar--condensed' : ''}`}>
       <div className="navbar__inner u-container">
         <Link to="/" className="navbar__brand" aria-label="Inspira — Ir al inicio">
           <Logo tone="navy" />
         </Link>
 
+        <span className="navbar__spacer" aria-hidden="true" />
+
         <nav className="navbar__desktop" aria-label="Principal">
+          {/* col 3: links — centrados entre logo y botón cuando aparece el CTA */}
           <ul className="navbar__list">
             {SERVICES.map((s) => (
               <li key={s.slug}>
                 <Link to={`/servicios/${s.slug}`} className="navbar__link">
-                  {s.name}
+                  {s.navLabel ?? s.name}
                 </Link>
               </li>
             ))}
@@ -74,10 +97,23 @@ function Navbar() {
               </a>
             </li>
           </ul>
-          <Button size="md" variant="primary" href="/#contacto" onClick={conversemos}>
+        </nav>
+
+        <span className="navbar__spacer navbar__spacer--right" aria-hidden="true" />
+
+        <div className="navbar__cta-slot">
+          <Button
+            size="md"
+            variant="primary"
+            href="/#contacto"
+            className="navbar__cta"
+            onClick={conversemos}
+            tabIndex={condensed ? 0 : -1}
+            aria-hidden={condensed ? undefined : 'true'}
+          >
             Conversemos
           </Button>
-        </nav>
+        </div>
 
         <button
           type="button"

@@ -5,6 +5,13 @@ import ArcPattern from '../ui/ArcPattern'
 import { makeHashHandler } from '../../lib/goToHash'
 import './Hero.css'
 
+// TODO(copy): confirmar con Fede los 3 (o más) datos de esta fila.
+const HIGHLIGHTS = [
+  'Más de 10 años de experiencia en el rubro',
+  'Desarrollando líderes',
+  'Consultoría de RRHH',
+]
+
 function Hero() {
   const navigate = useNavigate()
   const { pathname } = useLocation()
@@ -18,7 +25,6 @@ function Hero() {
         corporativo), ir a hero.css y setear:
             .hero { --hero-photo: url("/hero/<archivo>"); }
         La capa .hero__photo y el overlay navy ya estan listos.
-        Mientras tanto el hero se resuelve con navy + patron + tipografia.
       */}
       <div className="hero__photo" aria-hidden="true" />
       <div className="hero__overlay" aria-hidden="true" />
@@ -27,10 +33,11 @@ function Hero() {
       <div className="hero__content u-container">
         <Logo tone="white" className="hero__logo" />
 
-        {/* TODO(copy): headline BORRADOR — revisar con Fede. Corto, sobre vinculo/personas. */}
         <h1 id="hero-title" className="hero__title t-display">
-          Todo empieza por una conversación
+          Creemos que todo empieza por una conversación
         </h1>
+
+        <p className="hero__lead">Desarrollamos líderes de empresas</p>
 
         <Button
           size="lg"
@@ -41,6 +48,14 @@ function Hero() {
         >
           Conversemos
         </Button>
+
+        <ul className="hero__highlights">
+          {HIGHLIGHTS.map((item) => (
+            <li key={item} className="hero__highlight">
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )

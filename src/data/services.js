@@ -9,24 +9,28 @@ export const SERVICES = [
   {
     slug: 'coaching',
     name: 'Coaching',
+    navLabel: 'Coaching',
     hook: 'Liderazgo, conversaciones y desarrollo', // draft
     pattern: 'durazno-crema',
   },
   {
     slug: 'seleccion',
     name: 'Selección de personal',
+    navLabel: 'Selección', // etiqueta corta para el navbar
     hook: 'Personas alineadas al puesto y a la cultura', // draft
     pattern: 'navy-crema',
   },
   {
     slug: 'capacitaciones',
     name: 'Capacitaciones',
+    navLabel: 'Capacitaciones',
     hook: 'Aprendizaje a medida, impacto real', // draft
     pattern: 'durazno-crema',
   },
   {
     slug: 'psicotecnicos',
     name: 'Psicotécnicos',
+    navLabel: 'Psicotécnicos',
     hook: 'Evaluación con criterio para decidir mejor', // draft
     pattern: 'navy-crema',
   },
