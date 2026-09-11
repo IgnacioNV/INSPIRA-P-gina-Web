@@ -30,30 +30,33 @@
   background-color: var(--c-white);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
+  transition: box-shadow var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
 }
 
-/* escala de grises -> hover a color */
+/* Reveal on scroll: mas rapido y con un desplazamiento mas chico que el
+   ".reveal" generico del sitio (600ms/14px) — un logo es un elemento chico,
+   necesita un "pop" corto, no un movimiento grande. Una vez visible, queda
+   visible (useReveal es "once"): no se repite al volver a cruzar el viewport. */
+.social-proof__cell.reveal {
+  --reveal-shift: 10px;
+  transition: opacity 0.28s var(--ease-out), transform 0.28s var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* Los archivos ya vienen pre-procesados a blanco y negro (src/data/clients.js) —
+   sin filter en runtime. Sin "hover a color": no se reintroduce el color de
+   marca de terceros. El hover es solo una leve elevacion. */
 .social-proof__logo {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  filter: grayscale(1);
-  opacity: 0.7;
-  transition: filter var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
 }
-.social-proof__cell:hover .social-proof__logo {
-  filter: grayscale(0);
-  opacity: 1;
-}
-
-.social-proof__placeholder {
-  color: rgba(4, 0, 34, 0.22);
-  width: 100%;
-  max-width: 120px;
-}
-.social-proof__placeholder svg {
-  width: 100%;
-  height: auto;
+/* .is-visible en el selector: gana por especificidad al transform:none que
+   deja ".reveal.is-visible" (motion.css), sin depender del orden de bundle. */
+.social-proof__cell.is-visible:hover {
+  box-shadow: var(--shadow-card);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 900px) {

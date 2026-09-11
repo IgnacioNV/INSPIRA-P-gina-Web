@@ -1,67 +1,46 @@
 import { useReveal } from '../../lib/useReveal'
+import { CLIENTS } from '../../data/clients'
 import './SocialProof.css'
 
 /*
  * Prueba social — muro de logos de clientes.
- * Tratamiento unificado: misma caja, escala de grises, hover a color.
+ * Tratamiento unificado: misma caja para todos, y los 41 archivos ya vienen
+ * pre-procesados a blanco y negro (ver src/data/clients.js) — nada de CSS
+ * filter en runtime, ni "hover a color": se decidió no reintroducir el color
+ * de marca de terceros ni en hover, para no competir con la paleta Inspira.
  *
- * TODO(logos-clientes): reemplazar los placeholders por los logos reales.
- * Formato sugerido: SVG o PNG con fondo transparente, cargados en /public/clientes/.
- * Rellenar cada entrada con { name, src }. La caja y el tratamiento ya estan listos:
- * no cambia nada de layout al enchufar los archivos.
+ * Reveal on scroll: cada logo tiene su propio observer (no uno solo para
+ * toda la grilla) — así van apareciendo de a uno/fila a medida que el
+ * usuario baja, no todos juntos cuando la sección entra en viewport. Una
+ * vez visible queda visible (useReveal ya es "once"). Con
+ * prefers-reduced-motion, useReveal arranca todo visible sin animar.
  */
-const LOGOS = Array.from({ length: 12 }, (_, i) => ({
-  name: `Cliente ${i + 1}`,
-  src: null, // TODO: '/clientes/<archivo>.svg'
-}))
-
-function SocialProof() {
-  const [ref, visible] = useReveal({ threshold: 0.1 })
+function LogoCell({ client, index }) {
+  const [ref, visible] = useReveal({ threshold: 0.2, rootMargin: '0px 0px -8% 0px' })
 
   return (
-    <section
-      id="clientes"
-      className="social-proof u-section"
-      aria-labelledby="social-proof-title"
+    <li
       ref={ref}
+      className={`social-proof__cell reveal ${visible ? 'is-visible' : ''}`}
+      style={{ '--reveal-delay': `${(index % 6) * 90}ms` }}
     >
+      <img className="social-proof__logo" src={client.src} alt={client.name} loading="lazy" />
+    </li>
+  )
+}
+
+function SocialProof() {
+  return (
+    <section id="clientes" className="social-proof u-section" aria-labelledby="social-proof-title">
       <div className="u-container">
         <p className="social-proof__overline t-overline">Confían en nosotros</p>
         <h2 id="social-proof-title" className="t-section-title social-proof__title">
           Organizaciones que eligen a Inspira
         </h2>
 
-        <ul className={`social-proof__grid ${visible ? 'reveal is-visible' : 'reveal'}`}>
-          {LOGOS.map((logo) => (
-            <li key={logo.name} className="social-proof__cell">
-              {logo.src ? (
-                <img
-                  className="social-proof__logo"
-                  src={logo.src}
-                  alt={logo.name}
-                  loading="lazy"
-                />
-              ) : (
-                <span className="social-proof__placeholder" aria-hidden="true">
-                  {/* placeholder neutro — TODO: logo real */}
-                  <svg viewBox="0 0 120 40" fill="none">
-                    <rect
-                      x="1"
-                      y="1"
-                      width="118"
-                      height="38"
-                      rx="8"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeDasharray="4 4"
-                    />
-                    <circle cx="26" cy="20" r="7" fill="currentColor" />
-                    <rect x="42" y="16" width="52" height="3.5" rx="1.75" fill="currentColor" />
-                    <rect x="42" y="24" width="34" height="3.5" rx="1.75" fill="currentColor" />
-                  </svg>
-                </span>
-              )}
-            </li>
+        <ul className="social-proof__grid">
+          {CLIENTS.map((client, i) => (
+            <LogoCell key={client.src} client={client} index={i} />
           ))}
         </ul>
       </div>
