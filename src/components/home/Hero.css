@@ -1,0 +1,136 @@
+.hero {
+  /* Foto real (equipo de Inspira en una capacitación), la misma que ya
+     estaba hosteada en inspira.ar. */
+  --hero-photo: url('/hero-bg.png');
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  /* Casi toda la pantalla: deja asomar ~104px de la próxima sección para que
+     se entienda que hay que seguir deslizando. */
+  min-height: calc(100dvh - var(--navbar-h) - 104px);
+  padding-block: var(--sp-16);
+  background-color: var(--c-navy);
+  overflow: hidden;
+}
+
+/* Fallback para navegadores sin dvh */
+@supports not (height: 100dvh) {
+  .hero {
+    min-height: calc(100vh - var(--navbar-h) - 104px);
+  }
+}
+
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: var(--hero-photo);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Overlay navy — lo justo para que el texto respire, sin tapar la foto.
+   Sin foto queda navy sobre navy (invisible), no molesta. */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to right,
+    rgba(4, 0, 34, 0.44) 0%,
+    rgba(4, 0, 34, 0.28) 60%,
+    rgba(4, 0, 34, 0.14) 100%
+  );
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 820px;
+
+  /* fade-in + leve movimiento vertical al cargar (12-16px) */
+  animation: hero-enter 0.7s var(--ease-out) both;
+}
+
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--reveal-shift));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__content {
+    animation: none;
+  }
+}
+
+.hero__logo {
+  height: 30px;
+  margin-bottom: var(--sp-8);
+}
+
+.hero__title {
+  color: var(--c-white);
+}
+
+/* El salto de línea cae solo antes de "una conversación" */
+.hero__title-break {
+  display: block;
+  white-space: nowrap;
+}
+
+/* Bajada — Montserrat Medium 24px (pedido explícito) */
+.hero__lead {
+  margin-top: var(--sp-4);
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 500;
+  color: var(--c-cream);
+}
+
+.hero__cta {
+  margin-top: var(--sp-8);
+}
+
+/* Fila de datos bajo el botón — 10px */
+.hero__highlights {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2) var(--sp-4);
+  margin: var(--sp-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero__highlight {
+  position: relative;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: rgba(255, 246, 241, 0.78);
+}
+
+.hero__highlight + .hero__highlight::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--sp-4) / -2);
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  margin-top: -2px;
+  border-radius: 50%;
+  background-color: var(--c-orange);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-block: var(--sp-12);
+  }
+}

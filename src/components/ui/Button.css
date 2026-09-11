@@ -1,0 +1,88 @@
+/* ============================================================
+   Inspira — Botones
+   Una sola forma (pill). Padding fijo por tamaño (no proporcional al texto).
+   Primario: fondo naranja / texto navy.  Secundario: outline navy.
+   Manual de Marca v1.2 §05.
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-family: var(--font);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* ---- Tamaños (alto / padding-x / texto fijos) ---- */
+.btn--lg {
+  height: 48px;
+  padding-inline: 32px;
+  font-size: 16px;
+}
+.btn--md {
+  height: 40px;
+  padding-inline: 24px;
+  font-size: 14px;
+}
+.btn--sm {
+  height: 32px;
+  padding-inline: 16px;
+  font-size: 12.5px;
+}
+
+/* ---- Rol: primario ---- */
+.btn--primary {
+  background-color: var(--c-orange);
+  color: var(--text-on-orange); /* navy — regla dura de contraste */
+}
+.btn--primary:hover {
+  background-color: var(--c-orange-hover);
+}
+.btn--primary:disabled,
+.btn--primary[aria-disabled="true"] {
+  background-color: rgba(217, 116, 0, 0.4);
+  color: rgba(4, 0, 34, 0.4);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---- Rol: secundario ---- */
+.btn--secondary {
+  background-color: transparent;
+  border: 1.5px solid var(--c-navy);
+  color: var(--c-navy);
+}
+.btn--secondary:hover {
+  background-color: rgba(4, 0, 34, 0.08);
+}
+.btn--secondary:disabled,
+.btn--secondary[aria-disabled="true"] {
+  border-color: rgba(4, 0, 34, 0.4);
+  color: rgba(4, 0, 34, 0.4);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---- Sobre fondo oscuro: el secundario invierte a crema ---- */
+[data-surface="dark"] .btn--secondary {
+  border-color: var(--c-cream);
+  color: var(--c-cream);
+}
+[data-surface="dark"] .btn--secondary:hover {
+  background-color: rgba(255, 246, 241, 0.1);
+}
+
+/* El primario NO cambia sobre fondo oscuro (naranja + texto navy siempre) */

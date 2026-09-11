@@ -1,0 +1,33 @@
+.final-cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--c-navy);
+  padding-block: var(--sp-24);
+}
+
+.final-cta__pattern {
+  z-index: -1;
+  opacity: 0.2;
+}
+
+.final-cta__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--sp-8);
+  max-width: 720px;
+}
+
+.final-cta__title {
+  color: var(--c-white);
+  text-wrap: balance;
+  max-width: 20ch;
+}
+
+@media (max-width: 640px) {
+  .final-cta {
+    padding-block: var(--sp-16);
+  }
+}

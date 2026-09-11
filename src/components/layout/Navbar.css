@@ -1,0 +1,195 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--c-cream);
+  transition: box-shadow var(--dur-fast) var(--ease-out);
+}
+
+/* Sombra sólo una vez que pasás el hero */
+.navbar--condensed {
+  box-shadow: var(--shadow-navbar);
+}
+
+/* ---- Layout ----
+   Logo a la izquierda, links centrados en la navbar (equidistantes del logo
+   y del botón), CTA a la derecha. Links y CTA van absolute para que el
+   centrado no dependa del ancho del logo ni del botón. */
+.navbar__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--navbar-h);
+}
+
+.navbar__brand {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ---- Links ----
+   left:50% + translateX(-50%) = centro exacto de la navbar.
+   --nav-list-shift (px, calculado en JS) los corre a la derecha del todo
+   mientras no está el botón; pasa a 0 cuando el botón aparece. */
+.navbar__desktop {
+  position: absolute;
+  left: 50%;
+  transform: translateX(calc(-50% + var(--nav-list-shift, 0px)));
+  transition: transform 0.5s var(--ease-out);
+  display: flex;
+  align-items: center;
+}
+
+.navbar__list {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+  margin: 0;
+}
+
+.navbar__link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--c-navy);
+  text-decoration: none;
+  padding: var(--sp-1) 0;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color var(--dur-fast) var(--ease-out);
+  white-space: nowrap;
+}
+
+.navbar__link:hover {
+  border-bottom-color: var(--c-orange);
+}
+
+/* ---- CTA que aparece al pasar el hero (absolute: no ocupa columna) ---- */
+.navbar__cta-slot {
+  position: absolute;
+  right: var(--gutter);
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar__cta {
+  opacity: 0;
+  transform: translateY(-6px) scale(0.94);
+  transform-origin: right center;
+  transition: opacity 0.3s var(--ease-out), transform 0.4s var(--ease-out);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.navbar--condensed .navbar__cta {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.12s;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar__cta,
+  .navbar__desktop {
+    transition: none;
+  }
+}
+
+/* ---- Toggle mobile ---- */
+.navbar__toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar__toggle-bar {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: var(--c-navy);
+  border-radius: 2px;
+  transition: transform var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+}
+
+.navbar__toggle[aria-expanded='true'] .navbar__toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navbar__toggle[aria-expanded='true'] .navbar__toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+.navbar__toggle[aria-expanded='true'] .navbar__toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ---- Panel mobile ---- */
+.navbar__mobile {
+  position: fixed;
+  inset: var(--navbar-h) 0 0;
+  background-color: var(--c-cream);
+  overflow-y: auto;
+  animation: navbar-fade var(--dur-fast) var(--ease-out);
+}
+
+@keyframes navbar-fade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.navbar__mobile-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding-block: var(--sp-8);
+}
+
+.navbar__mobile-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.navbar__mobile-link {
+  display: block;
+  padding: var(--sp-4) 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--c-navy);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar__mobile-link:hover {
+  color: var(--c-orange);
+}
+
+.navbar__mobile-cta {
+  margin-top: var(--sp-6);
+  width: 100%;
+}
+
+/* ---- Breakpoint ---- */
+@media (max-width: 960px) {
+  .navbar__desktop,
+  .navbar__cta-slot {
+    display: none;
+  }
+  .navbar__toggle {
+    display: flex;
+  }
+}
+
+@media (min-width: 961px) {
+  .navbar__mobile {
+    display: none;
+  }
+}

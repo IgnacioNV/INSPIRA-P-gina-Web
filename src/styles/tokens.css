@@ -1,0 +1,102 @@
+/* ============================================================
+   Inspira — Design tokens
+   Fuente de verdad: Manual de Marca v1.2.
+   NO agregar valores nuevos sin pasar por el manual.
+   ============================================================ */
+
+:root {
+  /* ---- Paleta (sacada por pixel del logo oficial) ---- */
+  --c-orange: #d97400; /* primario — CTAs, acentos, isotipo */
+  --c-orange-hover: #c36a00; /* naranja ~10% mas oscuro (hover primario) */
+  --c-navy: #040022; /* secundario — fondos oscuros, texto principal */
+  --c-cream: #fff6f1; /* fondo claro principal */
+  --c-white: #ffffff; /* texto sobre navy / foto */
+  --c-peach: #ffe3c5; /* apoyo — patron, fondos suaves */
+
+  /* ---- Roles semanticos ---- */
+  --bg: var(--c-cream);
+  --surface: var(--c-white);
+  --text: var(--c-navy);
+  --text-on-dark: var(--c-cream); /* Cream / Navy = 19.16:1 (AAA) */
+  --text-on-orange: var(--c-navy); /* REGLA DURA: navy sobre naranja (6.27:1). Nunca cream/blanco. */
+  --border: rgba(4, 0, 34, 0.12);
+  --border-on-dark: rgba(255, 246, 241, 0.16);
+
+  /* ---- Tipografia ----
+     Montserrat, una sola familia. Jerarquia por peso/tamaño.
+     Sentence case en todo salvo Overline/Label. Sin peso Black (900). */
+  --font: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --fs-display: 40px;   --lh-display: 48px;   --fw-display: 800;
+  --fs-h1: 32px;        --lh-h1: 38px;        --fw-h1: 800;
+  --fs-h2: 24px;        --lh-h2: 30px;        --fw-h2: 700;
+  /* Card title: para títulos DENTRO de una card (ej. nombre del servicio en
+     "Qué hacemos") — mismo peso que H2 pero un escalón mas chico, para que
+     no pese igual que un título de sección. No es un tamaño del manual v1.2
+     original, se agregó por pedido explícito. Fijo en todos los anchos
+     (no tiene el bump a desktop que sí tiene H2). */
+  --fs-card-title: 22px; --lh-card-title: 28px; --fw-card-title: 700;
+  --fs-h3: 17px;        --lh-h3: 23px;        --fw-h3: 600;
+  --fs-body: 12.5px;    --lh-body: 19px;      --fw-body: 400;
+  --fw-body-strong: 500;
+  --fs-caption: 10.5px; --lh-caption: 15px;   --fw-caption: 500;
+  --fs-overline: 10px;  --lh-overline: 14px;  --fw-overline: 700;
+  --tracking-overline: 0.12em; /* +12% */
+
+  /* ---- Espaciado (escala 4px) ---- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-24: 96px;
+  --sp-30: 120px;
+
+  /* ---- Layout ---- */
+  --container: 1120px;
+  --gutter: clamp(20px, 5vw, 64px);
+  --navbar-h: 68px;
+
+  /* ---- Radios ---- */
+  --radius-pill: 999px;
+  --radius-card: 16px;
+  --radius-sm: 10px;
+
+  /* ---- Sombras ---- */
+  --shadow-card: 0 1px 2px rgba(4, 0, 34, 0.06), 0 8px 24px rgba(4, 0, 34, 0.05);
+  --shadow-card-hover: 0 2px 6px rgba(4, 0, 34, 0.08), 0 16px 40px rgba(4, 0, 34, 0.1);
+  --shadow-navbar: 0 2px 14px rgba(4, 0, 34, 0.08);
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 0.6s;
+  --dur-fast: 0.2s;
+  --reveal-shift: 14px; /* hero + reveals: 12–16px */
+  --stagger: 100ms;     /* pilares: ~100ms entre bloque y bloque */
+
+  /* ---- Focus ---- */
+  --focus-ring: 2px solid var(--c-navy);
+  --focus-ring-on-dark: 2px solid var(--c-cream);
+  --focus-offset: 2px;
+}
+
+/* ============================================================
+   Escala tipografica — piso de 14px en desktop.
+   El manual v1.2 define Body/Caption/Overline pensados para piezas chicas
+   (12.5 / 10.5 / 10px); en pantalla, por debajo de los ~900px de ancho en
+   adelante, eso lee demasiado chico. Se mantiene la MISMA jerarquia del
+   manual (mismos pesos, mismo uso de mayuscula solo en Overline, mismo
+   tracking +12%) pero un escalon mas grande en desktop — mobile se queda
+   con los valores del manual tal cual.
+   ============================================================ */
+@media (min-width: 900px) {
+  :root {
+    --fs-h2: 30px;        --lh-h2: 38px;
+    --fs-body: 16px;      --lh-body: 24px;
+    --fs-caption: 14px;   --lh-caption: 20px;
+    --fs-overline: 14px;  --lh-overline: 19px;
+  }
+}

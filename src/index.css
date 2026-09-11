@@ -1,78 +1,21 @@
-/* ============================================
-   Inspira – Sistema de colores centralizado
-   Solo usar estas variables. Sin colores nuevos.
-   ============================================ */
+/* ============================================================
+   Inspira — entrypoint de estilos
+   Orden: tokens -> base -> motion.
+   Los estilos de cada componente se importan desde su .jsx.
+   ============================================================ */
+@import './styles/tokens.css';
+@import './styles/base.css';
+@import './styles/motion.css';
+
+/* ------------------------------------------------------------
+   Alias legacy: componentes viejos todavia en el repo
+   (Testimonios / Novedades / Nosotros / Servicios viejos, etc.)
+   usan estas variables. Se mantienen para no romperlos mientras
+   siguen fuera del arbol de render. Cuando se borren, borrar esto.
+   ------------------------------------------------------------ */
 :root {
-  --text-color: #040022;
-  --orange: #D97400;
-  --background-color: #FFF6F1;
-  --blue: #0089BE;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
-  color: var(--text-color);
-  background-color: var(--background-color);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Fade-in animation base */
-.fade-in {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.fade-in--visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fade-in--delay-1 { transition-delay: 0.1s; }
-.fade-in--delay-2 { transition-delay: 0.2s; }
-.fade-in--delay-3 { transition-delay: 0.3s; }
-
-/* Header de la sección */
-.section-header {
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-.section-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1.75rem, 5vw, 3rem);
-  font-weight: 800;
-  color: var(--text-color);
-  margin: 0 0 20px 0;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.section-subtitle {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(0.875rem, 2.5vw, 1.1rem);
-  font-weight: 400;
-  color: var(--text-color);
-  margin: 0;
-  width: auto;
-  line-height: 1.6;
-  font-style: italic;
-}
-
-@media (max-width: 768px) {
-  .section-title {
-    letter-spacing: 1px;
-  }
+  --text-color: var(--c-navy);
+  --orange: var(--c-orange);
+  --background-color: var(--c-cream);
+  --blue: var(--c-navy); /* el manual v1.2 no tiene azul — mapeado a navy */
 }

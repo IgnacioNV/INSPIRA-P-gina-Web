@@ -1,0 +1,238 @@
+/* ============================================================
+   /formup — registro de asistencia (Inspira RRHH)
+   Standalone: sin navbar/footer del sitio. Mobile-first.
+
+   Inputs: mismo patrón que el form de contacto del Footer
+   (src/components/layout/Footer.css .footer__field) — caja con borde,
+   mismo padding/radius/tipografía, mismo halo naranja al foco. Ahí está
+   pensado para fondo navy (bordes/fondo en tonos crema translúcidos); acá
+   la superficie es clara, así que se usa el mismo patrón con los tokens
+   claros equivalentes (borde navy translúcido, fondo blanco) — no es un
+   input distinto, es el mismo componente visual para la superficie clara
+   del sitio, igual que Button.css resuelve dark/light con [data-surface].
+   ============================================================ */
+
+.formup {
+  min-height: 100dvh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: var(--bg);
+  padding-block: var(--sp-16);
+}
+
+@media (min-width: 640px) {
+  .formup {
+    align-items: center;
+    padding-block: var(--sp-24);
+  }
+}
+
+.formup__card {
+  width: 100%;
+  max-width: 560px;
+  background-color: var(--surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-8) var(--sp-6);
+}
+
+@media (min-width: 640px) {
+  .formup__card {
+    padding: var(--sp-12) var(--sp-12);
+  }
+}
+
+.formup__brand {
+  margin-bottom: var(--sp-6);
+}
+
+.formup__header {
+  margin-bottom: var(--sp-8);
+}
+
+.formup__intro {
+  margin-top: var(--sp-3);
+  color: var(--text);
+}
+
+.formup__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+/* ---- Campos (mismo patrón que Footer .footer__field, superficie clara) ---- */
+.formup__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.formup__field label {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.formup__field input,
+.formup__field textarea {
+  width: 100%;
+  padding: var(--sp-3) var(--sp-4);
+  font-family: var(--font);
+  font-size: var(--fs-body);
+  color: var(--text);
+  background-color: var(--c-white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.formup__field input::placeholder,
+.formup__field textarea::placeholder {
+  color: rgba(4, 0, 34, 0.4);
+}
+
+.formup__field textarea {
+  resize: vertical;
+  min-height: 88px;
+}
+
+/* Foco: mismo halo naranja que usa el form del Footer */
+.formup__field input:focus,
+.formup__field textarea:focus {
+  border-color: var(--c-orange);
+  background-color: rgba(255, 227, 197, 0.35);
+  box-shadow: 0 0 0 4px rgba(217, 116, 0, 0.2);
+}
+
+.formup__field input[aria-invalid='true'],
+.formup__field textarea[aria-invalid='true'] {
+  border-color: #b3261e;
+}
+
+.formup__field-error {
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  color: #b3261e;
+  font-weight: 600;
+}
+
+/* ---- Fieldset de intereses ---- */
+.formup__fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.formup__fieldset legend {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--text);
+  padding: 0;
+}
+
+.formup__checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+}
+
+.formup__checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-body);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.formup__checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--c-orange);
+  cursor: pointer;
+}
+
+.formup__checkbox input:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* ---- Opt-in: sección aparte, separada visualmente del resto ---- */
+.formup__optin {
+  margin-top: var(--sp-2);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--border);
+}
+
+.formup__optin-label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  cursor: pointer;
+}
+
+.formup__optin-label input {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--c-orange);
+  cursor: pointer;
+}
+
+.formup__optin-label input:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.formup__optin-label span {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text);
+}
+
+/* ---- Mensaje de estado del envío (mismo patrón que Footer .footer__form-msg) ---- */
+.formup__status {
+  margin: 0;
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  font-weight: 600;
+}
+
+.formup__status[data-state='error'] {
+  color: #b3261e;
+}
+
+/* ---- Submit ---- */
+.formup__submit {
+  align-self: stretch;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .formup__submit {
+    align-self: flex-start;
+  }
+}
+
+/* ---- Pantalla de agradecimiento ---- */
+.formup__thanks {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+.formup__thanks .formup__brand {
+  margin-bottom: 0;
+}

@@ -1,0 +1,38 @@
+.arc-pattern {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: repeat;
+}
+
+/* ---- Degradado de opacidad extra por seccion — stops 10 · 30 · 60 · 80 · 100 % ----
+   Un gradiente solido (no mask-image) que tapa el patron de a poco con el
+   color de fondo de la seccion. Ver nota larga en ArcPattern.jsx. */
+.arc-pattern__fade {
+  position: absolute;
+  inset: 0;
+}
+
+.arc-pattern__fade--up {
+  background: linear-gradient(
+    to top,
+    transparent 0%,
+    color-mix(in srgb, var(--fade-to) 20%, transparent) 25%,
+    color-mix(in srgb, var(--fade-to) 45%, transparent) 50%,
+    color-mix(in srgb, var(--fade-to) 75%, transparent) 75%,
+    color-mix(in srgb, var(--fade-to) 95%, transparent) 100%
+  );
+}
+
+.arc-pattern__fade--down {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    color-mix(in srgb, var(--fade-to) 20%, transparent) 25%,
+    color-mix(in srgb, var(--fade-to) 45%, transparent) 50%,
+    color-mix(in srgb, var(--fade-to) 75%, transparent) 75%,
+    color-mix(in srgb, var(--fade-to) 95%, transparent) 100%
+  );
+}

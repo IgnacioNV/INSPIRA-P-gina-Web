@@ -1,0 +1,321 @@
+.services {
+  background-color: var(--c-cream);
+  /* Solo padding arriba: abajo cierra a pleno con la franja navy de pilares,
+     sin devolver a crema antes de eso. */
+  padding-top: var(--sp-24);
+}
+
+/* ---- Header: a propósito NO sigue el patrón "centrado" del resto del sitio ----
+   Texto a la izquierda; el patrón es un FONDO real detrás (45% derecho,
+   a todo el alto del header) — no una tarjeta chica con bordes redondeados. */
+.services__header {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--sp-12);
+  padding-block: var(--sp-8);
+}
+
+.services__header-text {
+  position: relative;
+  z-index: 1;
+  max-width: 50%;
+}
+
+/* Patrón de fondo — ocupa el 45% derecho, a todo el alto del header. Un
+   solo tile grande (scale alto) para que no se sienta repetitivo. */
+.services__header-pattern {
+  position: absolute;
+  inset: 0;
+  left: 55%;
+  z-index: 0;
+}
+/* Tan sutil como en Nosotros (ahí el patrón está al 12% de opacidad) */
+.services__header-pattern .arc-pattern {
+  opacity: 0.15;
+}
+
+.services__overline {
+  color: var(--c-orange);
+  margin-bottom: var(--sp-2);
+}
+
+.services__title {
+  max-width: 26ch;
+}
+
+@media (max-width: 760px) {
+  /* Apilado: el patrón pasa a ser una franja horizontal debajo del texto,
+     no una columna angosta al lado (quedaba muy apretado). */
+  .services__header {
+    display: block;
+    min-height: 0;
+    padding-block: var(--sp-6);
+  }
+  .services__header-text {
+    max-width: none;
+    margin-bottom: var(--sp-6);
+  }
+  .services__header-pattern {
+    position: relative;
+    inset: auto;
+    left: auto;
+    height: 140px;
+    width: 100%;
+  }
+}
+
+/* ---- Lista de cards: apiladas a todo el ancho, no una fila apretada ---- */
+.services__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+  margin: 0 0 var(--sp-24);
+}
+
+.services__item {
+  opacity: 0;
+  transform: translateY(var(--reveal-shift));
+}
+.services__list.is-visible .services__item {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* Alterna el lado de la foto card por card */
+.services__item:nth-child(even) .services-card {
+  flex-direction: row-reverse;
+}
+
+.services-card {
+  display: flex;
+  background-color: var(--c-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.services-card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ---- Espacio protagónico para foto (placeholder: patrón de marca, no stock) ---- */
+.services-card__media {
+  position: relative;
+  isolation: isolate;
+  flex: 0 0 42%;
+  min-height: 340px;
+  background-color: var(--c-cream);
+  overflow: hidden;
+}
+
+.services-card__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.services-card__pattern {
+  z-index: -1;
+  opacity: 0.13; /* 10-15%, pedido explícito */
+}
+
+/* ---- Contenido ---- */
+.services-card__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-8);
+}
+
+.services-card__name {
+  color: var(--c-navy);
+}
+
+.services-card__hook {
+  color: var(--c-navy);
+  opacity: 0.75;
+}
+
+.services-card__desc {
+  color: var(--c-navy);
+  opacity: 0.85;
+  max-width: 54ch;
+}
+
+/* Marca visible de que el copy real todavía no llegó — no se inventa */
+.services-card__desc--pending {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 54ch;
+  padding: var(--sp-3) var(--sp-4);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+  background-color: rgba(217, 116, 0, 0.05);
+}
+
+.services-card__desc-label {
+  color: var(--c-orange);
+  font-weight: 700;
+}
+
+.services-card__desc--pending p {
+  margin: 0;
+  color: var(--c-navy);
+  font-style: italic;
+  opacity: 0.72;
+}
+
+.services-card__link {
+  margin-top: auto;
+  padding-top: var(--sp-2);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  align-self: flex-start;
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--c-orange);
+  text-decoration: none;
+}
+.services-card__link svg {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.services-card__link:hover svg {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services__item {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- Responsive: la foto pasa arriba, el orden alternado se desactiva ---- */
+@media (max-width: 820px) {
+  .services__item:nth-child(even) .services-card {
+    flex-direction: column;
+  }
+  .services-card {
+    flex-direction: column;
+  }
+  .services-card__media {
+    flex-basis: auto;
+    min-height: 220px;
+  }
+  .services-card__body {
+    padding: var(--sp-6);
+  }
+}
+
+@media (max-width: 640px) {
+  .services {
+    padding-top: var(--sp-16);
+  }
+  .services__list {
+    margin-bottom: var(--sp-16);
+  }
+}
+
+/* ============================================================
+   Cierre de "Qué hacemos": franja de los 4 pilares.
+   Conclusión de la sección (no una sección propia) — fondo navy para
+   sumar ritmo cromático a una página hoy casi toda clara.
+   ============================================================ */
+.services__pillars {
+  background-color: var(--c-navy);
+  padding-block: var(--sp-16);
+  border-top: 1px solid rgba(255, 246, 241, 0.1);
+}
+
+.services__pillars-title {
+  color: var(--c-white);
+  max-width: 36ch;
+  margin-bottom: var(--sp-12);
+  text-wrap: balance;
+}
+
+.services__pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-8);
+  margin: 0;
+}
+
+.services__pillars-item {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+
+  /* stagger reveal — ~100ms entre bloque y bloque */
+  opacity: 0;
+  transform: translateY(var(--reveal-shift));
+}
+
+.services__pillars-grid.is-visible .services__pillars-item {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.services__pillars-icon {
+  color: var(--c-orange); /* naranja Inspira, como pidió */
+  width: 44px;
+  height: 44px;
+}
+.services__pillars-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.services__pillars-label {
+  color: var(--c-white);
+}
+
+.services__pillars-phrase {
+  color: var(--text-on-dark);
+  opacity: 0.72;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services__pillars-item {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 820px) {
+  .services__pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-8) var(--sp-6);
+  }
+}
+
+/* Columna única en mobile (a diferencia de la vieja sección, que era 2x2) */
+@media (max-width: 560px) {
+  .services__pillars {
+    padding-block: var(--sp-12);
+  }
+  .services__pillars-grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-6);
+  }
+}

@@ -1,0 +1,166 @@
+.social-proof {
+  background-color: var(--c-cream);
+  text-align: center;
+}
+
+/* ============================================================
+   Pin (desktop): el wrapper es mas alto que la pantalla; el bloque
+   interno queda "sticky" mientras el usuario scrollea ese extra, dando
+   tiempo a que los 41 logos terminen de aparecer antes de soltar la
+   pagina hacia la siguiente seccion. Scroll nativo intacto: no hay
+   preventDefault ni manejo de wheel/touch, solo se LEE la posicion.
+   ============================================================ */
+.social-proof__pin-wrap.is-pinned {
+  position: relative;
+  height: 220vh;
+}
+
+/* top = navbar-h (NO 0): el navbar también es sticky y comparte el mismo
+   top:0 — sin este offset, el pin se solapaba con el navbar (68px de su
+   contenido quedaban tapados/perdidos, con el resultado de ver el título
+   pero "nada" de logo un buen rato al llegar). */
+.social-proof__pin-wrap.is-pinned .social-proof__pin {
+  position: sticky;
+  top: var(--navbar-h);
+  height: calc(100vh - var(--navbar-h));
+  display: flex;
+  overflow: hidden;
+  padding-block: var(--sp-8);
+}
+
+/* El header + la grilla ocupan el 100% del alto pineado: la grilla crece
+   (flex:1) para llenar lo que sobra, no queda centrada con aire arriba/abajo. */
+.social-proof__pin-wrap.is-pinned .u-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.social-proof__pin-wrap.is-pinned .social-proof__title {
+  margin-bottom: var(--sp-12);
+}
+
+.social-proof__pin-wrap.is-pinned .social-proof__grid {
+  flex: 1;
+  min-height: 0;
+  align-content: stretch;
+  gap: var(--sp-4);
+}
+
+/* Sin aspect-ratio fijo acá: cada logo estira a la altura de su fila,
+   la fila se calcula sola para que 41 logos llenen el alto disponible. */
+.social-proof__pin-wrap.is-pinned .social-proof__cell {
+  aspect-ratio: auto;
+  min-width: 0;
+  max-width: none;
+  flex: 1 1 calc((100% - 5 * var(--sp-4)) / 6);
+}
+
+/* Mobile / reduced-motion: sin pin, flujo normal */
+.social-proof__pin-wrap:not(.is-pinned) .social-proof__pin {
+  padding-block: var(--sp-16);
+}
+
+.social-proof__overline {
+  color: var(--c-orange);
+  margin-bottom: var(--sp-2);
+}
+
+.social-proof__title {
+  margin-bottom: var(--sp-8);
+}
+
+/* ---- Grilla: sin caja/fondo por logo — imagen directo sobre la seccion ---- */
+.social-proof__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  gap: var(--sp-3);
+  margin: 0;
+}
+
+.social-proof__cell {
+  flex: 0 1 calc((100% - 8 * var(--sp-3)) / 9);
+  min-width: 90px;
+  max-width: 140px;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Reveal: cada logo, corto y con stagger — controlado por el componente
+     via is-visible + --reveal-delay, no por scroll individual. */
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.social-proof__cell.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.social-proof__logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Tope de alto relativo a la celda, solo en el pin (desktop): ahí las
+   celdas se estiran a la altura de su fila (sin aspect-ratio fijo), asi
+   que un logo cuadrado o poco ancho (ej. DiBona) terminaba llenando el
+   100% del alto y pesando mucho más que uno ancho normal (que queda
+   limitado por el ancho, no por el alto). En mobile las celdas ya tienen
+   aspect-ratio 16/9 fijo, no hace falta. */
+.social-proof__pin-wrap.is-pinned .social-proof__logo {
+  max-height: 55%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-proof__cell {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1100px) {
+  .social-proof__cell {
+    flex-basis: calc((100% - 6 * var(--sp-3)) / 7);
+  }
+}
+
+@media (max-width: 900px) {
+  /* Sin pin acá: la sección respira normal, logos un poco mas grandes */
+  .social-proof__cell {
+    flex-basis: calc((100% - 4 * var(--sp-4)) / 5);
+    max-width: none;
+    min-width: 110px;
+  }
+  .social-proof__grid {
+    gap: var(--sp-4);
+  }
+}
+
+@media (max-width: 640px) {
+  .social-proof__cell {
+    flex-basis: calc((100% - 2 * var(--sp-3)) / 3);
+  }
+  .social-proof__grid {
+    gap: var(--sp-3);
+  }
+  .social-proof__title {
+    margin-bottom: var(--sp-6);
+  }
+}
+
+@media (max-width: 420px) {
+  .social-proof__cell {
+    flex-basis: calc((100% - var(--sp-3)) / 2);
+    min-width: 0;
+  }
+}
