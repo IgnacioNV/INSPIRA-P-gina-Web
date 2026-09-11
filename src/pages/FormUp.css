@@ -19,6 +19,9 @@
   justify-content: center;
   background-color: var(--bg);
   padding-block: var(--sp-16);
+  /* Sin esto la card (width:100%) toca los bordes del viewport en mobile —
+     su padding interno no cuenta como aire respecto de la pantalla. */
+  padding-inline: var(--gutter);
 }
 
 @media (min-width: 640px) {
@@ -114,6 +117,39 @@
   border-color: #b3261e;
 }
 
+/* ---- Teléfono: prefijo de país + número, en fila ---- */
+.formup__phone {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.formup__phone-country {
+  flex-shrink: 0;
+  width: auto;
+  max-width: 104px;
+  padding: var(--sp-3) var(--sp-2);
+  font-family: var(--font);
+  font-size: var(--fs-body);
+  color: var(--text);
+  background-color: var(--c-white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.formup__phone-country:focus {
+  border-color: var(--c-orange);
+  box-shadow: 0 0 0 4px rgba(217, 116, 0, 0.2);
+}
+
+.formup__phone input {
+  flex: 1;
+  min-width: 0;
+}
+
 .formup__field-error {
   font-size: var(--fs-caption);
   line-height: var(--lh-caption);
@@ -128,7 +164,7 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--sp-3);
+  gap: var(--sp-6);
 }
 
 .formup__fieldset legend {
@@ -139,10 +175,12 @@
   padding: 0;
 }
 
+/* Gap generoso: las dos opciones no pueden leerse pegadas, ni en fila
+   (desktop) ni apiladas (mobile, donde flex-wrap las pasa a una por línea). */
 .formup__checkbox-group {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-4);
+  gap: var(--sp-6);
 }
 
 .formup__checkbox {
@@ -197,6 +235,7 @@
 .formup__optin-label span {
   font-size: var(--fs-body);
   line-height: var(--lh-body);
+  font-weight: 500;
   color: var(--text);
 }
 
