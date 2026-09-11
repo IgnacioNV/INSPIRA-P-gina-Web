@@ -76,7 +76,6 @@ function Navbar() {
     }
   }, [open])
 
-  const contacto = makeHashHandler(navigate, pathname, 'contacto')
   const conversemos = makeHashHandler(navigate, pathname, 'contacto', { focus: 'nombre' })
 
   const closeThen = useCallback(
@@ -113,9 +112,9 @@ function Navbar() {
               </Link>
             </li>
             <li>
-              <a href="/#contacto" className="navbar__link" onClick={contacto}>
-                Contacto
-              </a>
+              <Link to="/busquedas" className="navbar__link">
+                Búsquedas/CV
+              </Link>
             </li>
           </ul>
         </nav>
@@ -168,13 +167,9 @@ function Navbar() {
               </Link>
             </li>
             <li>
-              <a
-                href="/#contacto"
-                className="navbar__mobile-link"
-                onClick={closeThen(contacto)}
-              >
-                Contacto
-              </a>
+              <Link to="/busquedas" className="navbar__mobile-link">
+                Búsquedas/CV
+              </Link>
             </li>
           </ul>
           <Button

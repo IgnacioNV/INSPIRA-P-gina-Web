@@ -4,6 +4,7 @@ import Footer from './components/layout/Footer'
 import Home from './pages/Home'
 import ServiceDetail from './pages/ServiceDetail'
 import Nosotros from './pages/Nosotros'
+import Busquedas from './pages/Busquedas'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/servicios/:slug" element={<ServiceDetail />} />
           <Route path="/nosotros" element={<Nosotros />} />
+          <Route path="/busquedas" element={<Busquedas />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
