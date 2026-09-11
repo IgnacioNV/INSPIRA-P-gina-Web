@@ -10,11 +10,12 @@ import './FormUp.css'
  * por afuera del flujo normal.
  *
  * Logica de guardado (a proposito, no es un detalle menor):
- * - Checkbox de opt-in DESTILDADO por default. Si el usuario no lo tilda,
- *   el submit NUNCA llama a fetch — no se envia ni se guarda nada en
- *   ningun lado, solo se muestra el agradecimiento.
- * - Si lo tilda, recien ahi se manda el payload completo al Web App de
- *   Apps Script.
+ * - Checkbox de opt-in tildado por default (el usuario lo puede
+ *   destildar). Si queda destildado, el submit NUNCA llama a fetch — no
+ *   se envia ni se guarda nada en ningun lado, solo se muestra el
+ *   agradecimiento.
+ * - Si queda tildado, recien ahi se manda el payload completo al Web App
+ *   de Apps Script.
  */
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -22,13 +23,30 @@ const REDIRECT_URL = 'https://inspira.ar'
 const REDIRECT_DELAY_MS = 4500
 const ENDPOINT = import.meta.env.VITE_FORMUP_ENDPOINT
 
+// Lista corta, no exhaustiva — cubre Argentina (default) + los países más
+// probables para una consultora de RRHH en Buenos Aires. Fácil de sumar más.
+const COUNTRY_CODES = [
+  { name: 'Argentina', dial: '+54', flag: '🇦🇷' },
+  { name: 'Uruguay', dial: '+598', flag: '🇺🇾' },
+  { name: 'Chile', dial: '+56', flag: '🇨🇱' },
+  { name: 'Paraguay', dial: '+595', flag: '🇵🇾' },
+  { name: 'Brasil', dial: '+55', flag: '🇧🇷' },
+  { name: 'Bolivia', dial: '+591', flag: '🇧🇴' },
+  { name: 'Perú', dial: '+51', flag: '🇵🇪' },
+  { name: 'Colombia', dial: '+57', flag: '🇨🇴' },
+  { name: 'México', dial: '+52', flag: '🇲🇽' },
+  { name: 'España', dial: '+34', flag: '🇪🇸' },
+  { name: 'Estados Unidos', dial: '+1', flag: '🇺🇸' },
+]
+
 const initialValues = {
   nombre: '',
   email: '',
-  telefono: '',
+  telefonoPais: COUNTRY_CODES[0].dial,
+  telefonoNumero: '',
   experienciaLaboral: '',
   intereses: [], // 'Psicología del Trabajo' | 'Recursos Humanos'
-  optIn: false,
+  optIn: true,
 }
 
 function validate(values) {
@@ -44,13 +62,27 @@ function validate(values) {
   return errors
 }
 
+// "1112345678" -> "11 1234 - 5678" (área + dos bloques de 4, formateado a
+// medida que se escribe). Tope de 10 dígitos.
+function formatPhoneLocal(raw) {
+  const digits = raw.replace(/\D/g, '').slice(0, 10)
+  if (digits.length <= 2) return digits
+  if (digits.length <= 6) return `${digits.slice(0, 2)} ${digits.slice(2)}`
+  return `${digits.slice(0, 2)} ${digits.slice(2, 6)} - ${digits.slice(6)}`
+}
+
 function FormUp() {
   const [values, setValues] = useState(initialValues)
-  const [errors, setErrors] = useState({})
+  const [touched, setTouched] = useState({})
+  const [submitAttempted, setSubmitAttempted] = useState(false)
   const [status, setStatus] = useState('idle') // idle | submitting | success | error
 
   const nombreRef = useRef(null)
   const emailRef = useRef(null)
+
+  // Se recalcula en cada render a partir de values — permite marcar
+  // errores a medida que el usuario completa, no solo al enviar.
+  const errors = validate(values)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -64,6 +96,16 @@ function FormUp() {
 
   function setField(field, value) {
     setValues((prev) => ({ ...prev, [field]: value }))
+  }
+
+  function markTouched(field) {
+    setTouched((prev) => ({ ...prev, [field]: true }))
+  }
+
+  // Un campo solo muestra su error una vez que el usuario pasó por él
+  // (blur) o después de un intento de envío — así no lo recibe en blanco.
+  function fieldError(field) {
+    return touched[field] || submitAttempted ? errors[field] : undefined
   }
 
   function toggleInteres(label) {
@@ -83,10 +125,9 @@ function FormUp() {
   async function handleSubmit(e) {
     e.preventDefault()
 
-    const foundErrors = validate(values)
-    setErrors(foundErrors)
-    if (Object.keys(foundErrors).length > 0) {
-      focusFirstError(foundErrors)
+    setSubmitAttempted(true)
+    if (Object.keys(errors).length > 0) {
+      focusFirstError(errors)
       return
     }
 
@@ -101,7 +142,9 @@ function FormUp() {
     const payload = {
       nombre: values.nombre.trim(),
       email: values.email.trim(),
-      telefono: values.telefono.trim(),
+      telefono: values.telefonoNumero
+        ? `${values.telefonoPais} ${values.telefonoNumero}`
+        : '',
       experienciaLaboral: values.experienciaLaboral.trim(),
       intereses: values.intereses,
       optIn: true,
@@ -168,13 +211,14 @@ function FormUp() {
               autoComplete="name"
               value={values.nombre}
               onChange={(e) => setField('nombre', e.target.value)}
+              onBlur={() => markTouched('nombre')}
               aria-required="true"
-              aria-invalid={Boolean(errors.nombre)}
-              aria-describedby={errors.nombre ? 'nombre-error' : undefined}
+              aria-invalid={Boolean(fieldError('nombre'))}
+              aria-describedby={fieldError('nombre') ? 'nombre-error' : undefined}
             />
-            {errors.nombre && (
+            {fieldError('nombre') && (
               <p id="nombre-error" className="formup__field-error" role="alert">
-                {errors.nombre}
+                {fieldError('nombre')}
               </p>
             )}
           </div>
@@ -192,28 +236,46 @@ function FormUp() {
               inputMode="email"
               value={values.email}
               onChange={(e) => setField('email', e.target.value)}
+              onBlur={() => markTouched('email')}
               aria-required="true"
-              aria-invalid={Boolean(errors.email)}
-              aria-describedby={errors.email ? 'email-error' : undefined}
+              aria-invalid={Boolean(fieldError('email'))}
+              aria-describedby={fieldError('email') ? 'email-error' : undefined}
             />
-            {errors.email && (
+            {fieldError('email') && (
               <p id="email-error" className="formup__field-error" role="alert">
-                {errors.email}
+                {fieldError('email')}
               </p>
             )}
           </div>
 
           <div className="formup__field">
-            <label htmlFor="telefono">Teléfono</label>
-            <input
-              id="telefono"
-              name="telefono"
-              type="tel"
-              autoComplete="tel"
-              inputMode="tel"
-              value={values.telefono}
-              onChange={(e) => setField('telefono', e.target.value)}
-            />
+            <label htmlFor="telefono-numero">Teléfono</label>
+            <div className="formup__phone">
+              <select
+                className="formup__phone-country"
+                aria-label="Prefijo de país"
+                value={values.telefonoPais}
+                onChange={(e) => setField('telefonoPais', e.target.value)}
+              >
+                {COUNTRY_CODES.map((c) => (
+                  <option key={c.dial + c.name} value={c.dial}>
+                    {c.flag} {c.dial}
+                  </option>
+                ))}
+              </select>
+              <input
+                id="telefono-numero"
+                name="telefono"
+                type="tel"
+                autoComplete="tel-national"
+                inputMode="numeric"
+                placeholder="11 1234 - 5678"
+                value={values.telefonoNumero}
+                onChange={(e) =>
+                  setField('telefonoNumero', formatPhoneLocal(e.target.value))
+                }
+              />
+            </div>
           </div>
 
           <div className="formup__field">
