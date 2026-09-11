@@ -12,16 +12,20 @@
    ============================================================ */
 .social-proof__pin-wrap.is-pinned {
   position: relative;
-  height: 260vh;
+  height: 220vh;
 }
 
+/* top = navbar-h (NO 0): el navbar también es sticky y comparte el mismo
+   top:0 — sin este offset, el pin se solapaba con el navbar (68px de su
+   contenido quedaban tapados/perdidos, con el resultado de ver el título
+   pero "nada" de logo un buen rato al llegar). */
 .social-proof__pin-wrap.is-pinned .social-proof__pin {
   position: sticky;
-  top: 0;
-  height: 100vh;
+  top: var(--navbar-h);
+  height: calc(100vh - var(--navbar-h));
   display: flex;
   overflow: hidden;
-  padding-block: var(--sp-12);
+  padding-block: var(--sp-8);
 }
 
 /* El header + la grilla ocupan el 100% del alto pineado: la grilla crece
@@ -103,6 +107,16 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+/* Tope de alto relativo a la celda, solo en el pin (desktop): ahí las
+   celdas se estiran a la altura de su fila (sin aspect-ratio fijo), asi
+   que un logo cuadrado o poco ancho (ej. DiBona) terminaba llenando el
+   100% del alto y pesando mucho más que uno ancho normal (que queda
+   limitado por el ancho, no por el alto). En mobile las celdas ya tienen
+   aspect-ratio 16/9 fijo, no hace falta. */
+.social-proof__pin-wrap.is-pinned .social-proof__logo {
+  max-height: 55%;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -39,9 +39,9 @@
   z-index: -1;
   background: linear-gradient(
     to right,
-    rgba(4, 0, 34, 0.62) 0%,
-    rgba(4, 0, 34, 0.42) 60%,
-    rgba(4, 0, 34, 0.25) 100%
+    rgba(4, 0, 34, 0.44) 0%,
+    rgba(4, 0, 34, 0.28) 60%,
+    rgba(4, 0, 34, 0.14) 100%
   );
 }
 

@@ -113,9 +113,12 @@ function Services() {
       <div className="u-container">
         <div className="services__header">
           {/* Patrón de fondo — ocupa el 45% derecho del header, a todo su alto.
-              Es un fondo, no una tarjeta chica: sin caja, sin bordes redondeados. */}
+              Es un fondo, no una tarjeta chica: sin caja, sin bordes redondeados.
+              Mismo tratamiento que "Nosotros" en el sitio en producción (arcos
+              sueltos, sutiles, repetidos varias veces) — acá un poco más
+              repetido: tile más chico, más columnas/filas visibles. */}
           <div className="services__header-pattern" aria-hidden="true">
-            <ArcPattern variant="durazno-crema" fade="none" scale={680} />
+            <ArcPattern variant="durazno-crema" fade="none" scale={160} />
           </div>
           <div className="services__header-text">
             <p className="services__overline t-overline">Qué hacemos</p>

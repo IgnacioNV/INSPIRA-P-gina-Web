@@ -44,7 +44,12 @@ function Navbar() {
         setCondensed(true)
         return
       }
-      setCondensed(hero.getBoundingClientRect().bottom <= 72)
+      // Atado al botón "Conversemos" del hero, no al final de toda la
+      // sección: el de la navbar tiene que aparecer apenas el del hero
+      // desaparece de pantalla, no cuando además se fue todo lo de abajo.
+      const heroCta = hero.querySelector('.hero__cta')
+      const bottom = heroCta ? heroCta.getBoundingClientRect().bottom : hero.getBoundingClientRect().bottom
+      setCondensed(bottom <= 72)
     }
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(update)

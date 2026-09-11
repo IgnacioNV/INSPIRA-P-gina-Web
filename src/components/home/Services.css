@@ -33,6 +33,10 @@
   left: 55%;
   z-index: 0;
 }
+/* Tan sutil como en Nosotros (ahí el patrón está al 12% de opacidad) */
+.services__header-pattern .arc-pattern {
+  opacity: 0.15;
+}
 
 .services__overline {
   color: var(--c-orange);

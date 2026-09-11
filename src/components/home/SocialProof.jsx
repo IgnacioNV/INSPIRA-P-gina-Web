@@ -48,12 +48,18 @@ function SocialProof() {
     if (!pinned || prefersReducedMotion()) return
     const el = wrapRef.current
     if (!el) return
+    // El pin sticka a top:navbar-h (no 0, el navbar también es sticky ahí),
+    // asi que el rango de scroll efectivo tiene que descontar esa altura
+    // de los dos lados de la cuenta (offset de enganche + alto visible).
+    const navbarH =
+      parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--navbar-h')) || 68
     let raf = 0
     const update = () => {
       raf = 0
       const rect = el.getBoundingClientRect()
-      const total = el.offsetHeight - window.innerHeight
-      const scrolled = Math.min(Math.max(-rect.top, 0), Math.max(total, 0))
+      const pinH = window.innerHeight - navbarH
+      const total = el.offsetHeight - pinH
+      const scrolled = Math.min(Math.max(navbarH - rect.top, 0), Math.max(total, 0))
       const progress = total > 0 ? scrolled / total : 1
       setRevealedCount(Math.round(progress * CLIENTS.length))
     }
