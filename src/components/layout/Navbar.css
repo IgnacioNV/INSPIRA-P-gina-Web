@@ -28,11 +28,15 @@
   align-items: center;
 }
 
-/* ---- Links: centrados exactos ---- */
+/* ---- Links ----
+   left:50% + translateX(-50%) = centro exacto de la navbar.
+   --nav-list-shift (px, calculado en JS) los corre a la derecha del todo
+   mientras no está el botón; pasa a 0 cuando el botón aparece. */
 .navbar__desktop {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(calc(-50% + var(--nav-list-shift, 0px)));
+  transition: transform 0.5s var(--ease-out);
   display: flex;
   align-items: center;
 }
@@ -86,7 +90,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .navbar__cta {
+  .navbar__cta,
+  .navbar__desktop {
     transition: none;
   }
 }
