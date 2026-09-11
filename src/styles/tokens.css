@@ -30,6 +30,12 @@
   --fs-display: 40px;   --lh-display: 48px;   --fw-display: 800;
   --fs-h1: 32px;        --lh-h1: 38px;        --fw-h1: 800;
   --fs-h2: 24px;        --lh-h2: 30px;        --fw-h2: 700;
+  /* Card title: para títulos DENTRO de una card (ej. nombre del servicio en
+     "Qué hacemos") — mismo peso que H2 pero un escalón mas chico, para que
+     no pese igual que un título de sección. No es un tamaño del manual v1.2
+     original, se agregó por pedido explícito. Fijo en todos los anchos
+     (no tiene el bump a desktop que sí tiene H2). */
+  --fs-card-title: 22px; --lh-card-title: 28px; --fw-card-title: 700;
   --fs-h3: 17px;        --lh-h3: 23px;        --fw-h3: 600;
   --fs-body: 12.5px;    --lh-body: 19px;      --fw-body: 400;
   --fw-body-strong: 500;

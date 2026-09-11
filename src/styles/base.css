@@ -161,6 +161,13 @@ ol[class] {
   line-height: var(--lh-h2);
   font-weight: var(--fw-h2);
 }
+/* Título dentro de una card (ej. nombre del servicio) — mismo peso que H2,
+   un escalón mas chico, para no pesar igual que un título de sección. */
+.t-card-title {
+  font-size: var(--fs-card-title);
+  line-height: var(--lh-card-title);
+  font-weight: var(--fw-card-title);
+}
 .t-h3 {
   font-size: var(--fs-h3);
   line-height: var(--lh-h3);

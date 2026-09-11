@@ -153,7 +153,7 @@ function Services() {
                 </div>
 
                 <div className="services-card__body">
-                  <h3 className="services-card__name t-h2">{s.name}</h3>
+                  <h3 className="services-card__name t-card-title">{s.name}</h3>
                   <p className="services-card__hook t-body-strong">{s.hook}</p>
 
                   {s.description ? (
