@@ -11,23 +11,16 @@
   box-shadow: var(--shadow-navbar);
 }
 
-/* ---- Layout: grid de 4 columnas ----
-   [logo] [spacer-izq 1fr] [links auto] [spacer-der 0fr → 1fr]
-   Sobre el hero: spacer-der = 0fr → los links quedan a la derecha, separados
-   del logo. Al pasar el hero: spacer-der = 1fr = spacer-izq → los links se
-   deslizan al centro, a la misma distancia del logo y del botón.
-   El CTA va absolute: no ocupa columna, no empuja ni recorta la grilla. */
+/* ---- Layout ----
+   Logo a la izquierda, links centrados en la navbar (equidistantes del logo
+   y del botón), CTA a la derecha. Links y CTA van absolute para que el
+   centrado no dependa del ancho del logo ni del botón. */
 .navbar__inner {
   position: relative;
-  display: grid;
-  grid-template-columns: auto 1fr auto 0fr;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   height: var(--navbar-h);
-  transition: grid-template-columns 0.5s var(--ease-out);
-}
-
-.navbar--condensed .navbar__inner {
-  grid-template-columns: auto 1fr auto 1fr;
 }
 
 .navbar__brand {
@@ -35,15 +28,13 @@
   align-items: center;
 }
 
-.navbar__spacer {
-  display: block;
-}
-
-/* ---- Links ---- */
+/* ---- Links: centrados exactos ---- */
 .navbar__desktop {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .navbar__list {
@@ -95,7 +86,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .navbar__inner,
   .navbar__cta {
     transition: none;
   }
@@ -184,11 +174,6 @@
 
 /* ---- Breakpoint ---- */
 @media (max-width: 960px) {
-  .navbar__inner {
-    display: flex;
-    justify-content: space-between;
-  }
-  .navbar__spacer,
   .navbar__desktop,
   .navbar__cta-slot {
     display: none;

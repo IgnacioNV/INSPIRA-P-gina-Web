@@ -74,10 +74,8 @@ function Navbar() {
           <Logo tone="navy" />
         </Link>
 
-        <span className="navbar__spacer" aria-hidden="true" />
-
         <nav className="navbar__desktop" aria-label="Principal">
-          {/* col 3: links — centrados entre logo y botón cuando aparece el CTA */}
+          {/* links centrados en la navbar (equidistantes del logo y del botón) */}
           <ul className="navbar__list">
             {SERVICES.map((s) => (
               <li key={s.slug}>
@@ -98,8 +96,6 @@ function Navbar() {
             </li>
           </ul>
         </nav>
-
-        <span className="navbar__spacer navbar__spacer--right" aria-hidden="true" />
 
         <div className="navbar__cta-slot">
           <Button

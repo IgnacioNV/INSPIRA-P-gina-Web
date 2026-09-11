@@ -5,8 +5,9 @@
   isolation: isolate;
   display: flex;
   align-items: center;
-  /* Ocupa toda la pantalla: hero + navbar = 100dvh */
-  min-height: calc(100dvh - var(--navbar-h));
+  /* Casi toda la pantalla: deja asomar ~104px de la próxima sección para que
+     se entienda que hay que seguir deslizando. */
+  min-height: calc(100dvh - var(--navbar-h) - 104px);
   padding-block: var(--sp-16);
   background-color: var(--c-navy);
   overflow: hidden;
@@ -15,7 +16,7 @@
 /* Fallback para navegadores sin dvh */
 @supports not (height: 100dvh) {
   .hero {
-    min-height: calc(100vh - var(--navbar-h));
+    min-height: calc(100vh - var(--navbar-h) - 104px);
   }
 }
 
@@ -79,8 +80,12 @@
 
 .hero__title {
   color: var(--c-white);
-  max-width: 18ch;
-  text-wrap: balance;
+}
+
+/* El salto de línea cae solo antes de "una conversación" */
+.hero__title-break {
+  display: block;
+  white-space: nowrap;
 }
 
 /* Bajada — Montserrat Medium 24px (pedido explícito) */
@@ -109,10 +114,10 @@
 
 .hero__highlight {
   position: relative;
-  font-size: 10px;
-  line-height: 14px;
+  font-size: 13px;
+  line-height: 18px;
   font-weight: 500;
-  color: rgba(255, 246, 241, 0.72);
+  color: rgba(255, 246, 241, 0.78);
 }
 
 .hero__highlight + .hero__highlight::before {
@@ -120,9 +125,9 @@
   position: absolute;
   left: calc(var(--sp-4) / -2);
   top: 50%;
-  width: 3px;
-  height: 3px;
-  margin-top: -1.5px;
+  width: 4px;
+  height: 4px;
+  margin-top: -2px;
   border-radius: 50%;
   background-color: var(--c-orange);
 }

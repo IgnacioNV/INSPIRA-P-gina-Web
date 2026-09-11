@@ -34,7 +34,8 @@ function Hero() {
         <Logo tone="white" className="hero__logo" />
 
         <h1 id="hero-title" className="hero__title t-display">
-          Creemos que todo empieza por una conversación
+          Creemos que todo empieza por{' '}
+          <span className="hero__title-break">una conversación</span>
         </h1>
 
         <p className="hero__lead">Desarrollamos líderes de empresas</p>
