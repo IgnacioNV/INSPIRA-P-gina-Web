@@ -124,7 +124,7 @@ function Footer() {
                 <Link to="/nosotros">Nosotros</Link>
               </li>
               <li>
-                <a href="/#contacto">Contacto</a>
+                <Link to="/busquedas">Búsquedas/CV</Link>
               </li>
             </ul>
           </nav>

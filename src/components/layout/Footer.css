@@ -51,32 +51,46 @@
 }
 
 .footer__field label {
-  font-size: var(--fs-caption);
-  line-height: var(--lh-caption);
-  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
   color: var(--text-on-dark);
 }
 
+/* Campo con caja propia (no solo un subrayado) para que el foco tenga
+   dónde "vivir" — cálido y reconocible como Inspira, no el azul del navegador. */
 .footer__field input,
 .footer__field textarea {
   width: 100%;
-  padding: var(--sp-3) 0;
+  padding: var(--sp-3) var(--sp-4);
   font-family: var(--font);
   font-size: var(--fs-body);
   color: var(--c-white);
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgba(255, 246, 241, 0.4);
-  outline-offset: 4px;
-  transition: border-color var(--dur-fast) var(--ease-out);
+  background-color: rgba(255, 246, 241, 0.05);
+  border: 1.5px solid rgba(255, 246, 241, 0.22);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.footer__field input::placeholder,
+.footer__field textarea::placeholder {
+  color: rgba(255, 246, 241, 0.4);
 }
 .footer__field textarea {
   resize: vertical;
   min-height: 76px;
 }
+
+/* Foco: borde naranja + halo durazno tenue — amable y reconociblemente Inspira */
 .footer__field input:focus,
 .footer__field textarea:focus {
-  border-bottom-color: var(--c-orange);
+  /* Reemplaza el outline crema genérico por el halo de marca de abajo —
+     sigue siendo un foco bien visible, solo que amable y de Inspira. */
+  outline: none;
+  border-color: var(--c-orange);
+  background-color: rgba(255, 227, 197, 0.07);
+  box-shadow: 0 0 0 4px rgba(217, 116, 0, 0.2);
 }
 .footer__field input:disabled,
 .footer__field textarea:disabled {
