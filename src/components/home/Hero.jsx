@@ -19,13 +19,6 @@ function Hero() {
 
   return (
     <section id="inicio" className="hero" data-surface="dark" aria-labelledby="hero-title">
-      {/*
-        TODO(foto-hero): cuando haya una foto real propia (gente en una
-        capacitacion o un momento de coaching — NO banco de imagenes, NO posado
-        corporativo), ir a hero.css y setear:
-            .hero { --hero-photo: url("/hero/<archivo>"); }
-        La capa .hero__photo y el overlay navy ya estan listos.
-      */}
       <div className="hero__photo" aria-hidden="true" />
       <div className="hero__overlay" aria-hidden="true" />
       <ArcPattern variant="crema-navy" fade="up" scale={260} className="hero__pattern" />

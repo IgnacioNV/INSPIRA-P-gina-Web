@@ -149,12 +149,6 @@ function Services() {
                       className="services-card__pattern"
                     />
                   )}
-                  {s.pillar && (
-                    <span className="services-card__tag">
-                      <span className="services-card__tag-dot" aria-hidden="true" />
-                      {s.pillar}
-                    </span>
-                  )}
                 </div>
 
                 <div className="services-card__body">

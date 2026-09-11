@@ -1,5 +1,7 @@
 .hero {
-  --hero-photo: none; /* TODO(foto-hero): url("/hero/<archivo>") cuando exista la foto real */
+  /* Foto real (equipo de Inspira en una capacitación), la misma que ya
+     estaba hosteada en inspira.ar. */
+  --hero-photo: url('/hero-bg.png');
 
   position: relative;
   isolation: isolate;

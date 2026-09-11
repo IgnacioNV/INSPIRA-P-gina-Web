@@ -12,21 +12,25 @@
   margin-bottom: var(--sp-12);
 }
 
+/* Flex (no grid): con flex-wrap + justify-content:center, la ultima fila
+   incompleta queda centrada en vez de pegada a la izquierda. */
 .social-proof__grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--sp-4);
   margin: 0;
 }
 
-/* misma caja para todos */
+/* Caja grande: 5 por fila en desktop (antes 6, mas chicas) */
 .social-proof__cell {
-  min-width: 0;
+  flex: 0 1 calc((100% - 4 * var(--sp-4)) / 5);
+  min-width: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 3 / 1;
-  padding: var(--sp-4);
+  aspect-ratio: 16 / 9;
+  padding: var(--sp-2);
   background-color: var(--c-white);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -44,12 +48,14 @@
   transition-delay: var(--reveal-delay, 0ms);
 }
 
-/* Los archivos ya vienen pre-procesados a blanco y negro (src/data/clients.js) —
-   sin filter en runtime. Sin "hover a color": no se reintroduce el color de
-   marca de terceros. El hover es solo una leve elevacion. */
+/* Los archivos ya vienen pre-procesados a blanco y negro y recortados al
+   contenido (src/data/clients.js) — sin filter en runtime. Object-fit:contain
+   asegura que no se pierda nada del logo; el recorte + poco padding hacen
+   que igual llene casi toda la caja. Sin "hover a color": no se reintroduce
+   el color de marca de terceros. El hover es solo una leve elevacion. */
 .social-proof__logo {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 /* .is-visible en el selector: gana por especificidad al transform:none que
@@ -60,14 +66,16 @@
 }
 
 @media (max-width: 900px) {
-  .social-proof__grid {
-    grid-template-columns: repeat(4, 1fr);
+  .social-proof__cell {
+    flex-basis: calc((100% - 3 * var(--sp-4)) / 4);
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 640px) {
+  .social-proof__cell {
+    flex-basis: calc((100% - 2 * var(--sp-3)) / 3);
+  }
   .social-proof__grid {
-    grid-template-columns: repeat(3, 1fr);
     gap: var(--sp-3);
   }
   .social-proof__title {
@@ -75,8 +83,9 @@
   }
 }
 
-@media (max-width: 380px) {
-  .social-proof__grid {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 420px) {
+  .social-proof__cell {
+    flex-basis: calc((100% - var(--sp-3)) / 2);
+    min-width: 0;
   }
 }

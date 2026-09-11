@@ -38,14 +38,7 @@ export function useReveal({ threshold = 0.15, rootMargin = '0px 0px -10% 0px', o
     )
     io.observe(el)
 
-    // Red de seguridad: si el observer nunca dispara (pestaña en background al
-    // cargar, bug de navegador), mostrar igual para no dejar contenido oculto.
-    const fallback = setTimeout(() => setVisible(true), 2500)
-
-    return () => {
-      io.disconnect()
-      clearTimeout(fallback)
-    }
+    return () => io.disconnect()
   }, [threshold, rootMargin, once])
 
   return [ref, visible]

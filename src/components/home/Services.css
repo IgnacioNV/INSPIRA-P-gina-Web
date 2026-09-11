@@ -90,32 +90,6 @@
   opacity: 0.13; /* 10-15%, pedido explícito */
 }
 
-/* Tag del pilar de marca que respalda a este servicio */
-.services-card__tag {
-  position: absolute;
-  top: var(--sp-4);
-  left: var(--sp-4);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 12px;
-  border-radius: var(--radius-pill);
-  background-color: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 1px 4px rgba(4, 0, 34, 0.14);
-  font-size: 10.5px;
-  line-height: 15px;
-  font-weight: 600;
-  color: var(--c-navy);
-}
-
-.services-card__tag-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--c-orange);
-  flex-shrink: 0;
-}
-
 /* ---- Contenido ---- */
 .services-card__body {
   flex: 1;
