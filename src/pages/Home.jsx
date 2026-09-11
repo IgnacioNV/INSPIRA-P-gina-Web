@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import Hero from '../components/home/Hero'
-import Pillars from '../components/home/Pillars'
 import SocialProof from '../components/home/SocialProof'
 import Services from '../components/home/Services'
 import FinalCta from '../components/home/FinalCta'
@@ -22,7 +21,6 @@ function Home() {
   return (
     <>
       <Hero />
-      <Pillars />
       <SocialProof />
       <Services />
       <FinalCta />

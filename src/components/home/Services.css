@@ -1,99 +1,186 @@
 .services {
   background-color: var(--c-cream);
-  text-align: center;
+}
+
+/* ---- Header: a propósito NO sigue el patrón "centrado" del resto del sitio ---- */
+.services__header {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  max-width: 640px;
+  margin-bottom: var(--sp-12);
+  padding-block: var(--sp-4);
+}
+
+.services__header-pattern {
+  z-index: -1;
+  opacity: 0.12;
 }
 
 .services__overline {
   color: var(--c-orange);
-  margin-bottom: var(--sp-3);
+  margin-bottom: var(--sp-2);
 }
 
 .services__title {
-  margin-bottom: var(--sp-12);
-  margin-inline: auto;
-  max-width: 22ch;
+  max-width: 26ch;
 }
 
-.services__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--sp-6);
+/* ---- Lista de cards: apiladas a todo el ancho, no una fila apretada ---- */
+.services__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
   margin: 0;
-  text-align: left;
 }
 
 .services__item {
-  min-width: 0;
   opacity: 0;
   transform: translateY(var(--reveal-shift));
 }
-.services__grid.is-visible .services__item {
+.services__list.is-visible .services__item {
   opacity: 1;
   transform: translateY(0);
   transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
-.services__card {
-  position: relative;
-  isolation: isolate;
+/* Alterna el lado de la foto card por card */
+.services__item:nth-child(even) .services-card {
+  flex-direction: row-reverse;
+}
+
+.services-card {
   display: flex;
-  min-height: 220px;
-  padding: var(--sp-6);
   background-color: var(--c-white);
   border: 1px solid var(--border);
   border-radius: var(--radius-card);
   overflow: hidden;
-  text-decoration: none;
-  color: var(--c-navy);
   box-shadow: var(--shadow-card);
-  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+  transition: box-shadow var(--dur-fast) var(--ease-out);
 }
 
-.services__card:hover {
-  transform: scale(1.02);
+.services-card:hover {
   box-shadow: var(--shadow-card-hover);
 }
 
-/* patron de fondo — bajo, para no competir con el texto */
-.services__card-bg {
-  z-index: -1;
-  opacity: 0.14;
+/* ---- Espacio protagónico para foto (placeholder: patrón de marca, no stock) ---- */
+.services-card__media {
+  position: relative;
+  isolation: isolate;
+  flex: 0 0 42%;
+  min-height: 340px;
+  background-color: var(--c-cream);
+  overflow: hidden;
 }
 
-.services__card-body {
+.services-card__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.services-card__pattern {
+  z-index: -1;
+  opacity: 0.13; /* 10-15%, pedido explícito */
+}
+
+/* Tag del pilar de marca que respalda a este servicio */
+.services-card__tag {
+  position: absolute;
+  top: var(--sp-4);
+  left: var(--sp-4);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 1px 4px rgba(4, 0, 34, 0.14);
+  font-size: 10.5px;
+  line-height: 15px;
+  font-weight: 600;
+  color: var(--c-navy);
+}
+
+.services-card__tag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--c-orange);
+  flex-shrink: 0;
+}
+
+/* ---- Contenido ---- */
+.services-card__body {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--sp-2);
+  gap: var(--sp-3);
+  padding: var(--sp-8);
+}
+
+.services-card__name {
+  color: var(--c-navy);
+}
+
+.services-card__hook {
+  color: var(--c-navy);
+  opacity: 0.75;
+}
+
+.services-card__desc {
+  color: var(--c-navy);
+  opacity: 0.85;
+  max-width: 54ch;
+}
+
+/* Marca visible de que el copy real todavía no llegó — no se inventa */
+.services-card__desc--pending {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 54ch;
+  padding: var(--sp-3) var(--sp-4);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+  background-color: rgba(217, 116, 0, 0.05);
+}
+
+.services-card__desc-label {
+  color: var(--c-orange);
+  font-weight: 700;
+}
+
+.services-card__desc--pending p {
+  margin: 0;
+  color: var(--c-navy);
+  font-style: italic;
+  opacity: 0.72;
+}
+
+.services-card__link {
   margin-top: auto;
-}
-
-.services__name {
-  color: var(--c-navy);
-}
-
-.services__hook {
-  color: var(--c-navy);
-  opacity: 0.7;
-  max-width: 24ch;
-}
-
-.services__arrow {
+  padding-top: var(--sp-2);
   display: inline-flex;
   align-items: center;
   gap: var(--sp-1);
-  margin-top: var(--sp-3);
+  align-self: flex-start;
   font-size: var(--fs-caption);
   font-weight: 700;
   letter-spacing: 0.02em;
   color: var(--c-orange);
+  text-decoration: none;
 }
-.services__arrow svg {
+.services-card__link svg {
   width: 14px;
   height: 14px;
   transition: transform var(--dur-fast) var(--ease-out);
 }
-.services__card:hover .services__arrow svg {
+.services-card__link:hover svg {
   transform: translateX(3px);
 }
 
@@ -102,22 +189,21 @@
     opacity: 1;
     transform: none;
   }
-  .services__card:hover {
-    transform: none;
-  }
 }
 
-@media (max-width: 900px) {
-  .services__grid {
-    grid-template-columns: repeat(2, 1fr);
+/* ---- Responsive: la foto pasa arriba, el orden alternado se desactiva ---- */
+@media (max-width: 820px) {
+  .services__item:nth-child(even) .services-card {
+    flex-direction: column;
   }
-}
-
-@media (max-width: 480px) {
-  .services__grid {
-    grid-template-columns: 1fr;
+  .services-card {
+    flex-direction: column;
   }
-  .services__card {
-    min-height: 160px;
+  .services-card__media {
+    flex-basis: auto;
+    min-height: 220px;
+  }
+  .services-card__body {
+    padding: var(--sp-6);
   }
 }
