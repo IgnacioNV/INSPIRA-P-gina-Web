@@ -79,6 +79,12 @@
   color: var(--text);
 }
 
+.formup__hint {
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  color: rgba(4, 0, 34, 0.6);
+}
+
 .formup__field input,
 .formup__field textarea {
   width: 100%;
