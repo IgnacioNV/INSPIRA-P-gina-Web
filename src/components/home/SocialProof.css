@@ -20,9 +20,37 @@
   top: 0;
   height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   overflow: hidden;
+  padding-block: var(--sp-12);
+}
+
+/* El header + la grilla ocupan el 100% del alto pineado: la grilla crece
+   (flex:1) para llenar lo que sobra, no queda centrada con aire arriba/abajo. */
+.social-proof__pin-wrap.is-pinned .u-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.social-proof__pin-wrap.is-pinned .social-proof__title {
+  margin-bottom: var(--sp-12);
+}
+
+.social-proof__pin-wrap.is-pinned .social-proof__grid {
+  flex: 1;
+  min-height: 0;
+  align-content: stretch;
+  gap: var(--sp-4);
+}
+
+/* Sin aspect-ratio fijo acá: cada logo estira a la altura de su fila,
+   la fila se calcula sola para que 41 logos llenen el alto disponible. */
+.social-proof__pin-wrap.is-pinned .social-proof__cell {
+  aspect-ratio: auto;
+  min-width: 0;
+  max-width: none;
+  flex: 1 1 calc((100% - 5 * var(--sp-4)) / 6);
 }
 
 /* Mobile / reduced-motion: sin pin, flujo normal */

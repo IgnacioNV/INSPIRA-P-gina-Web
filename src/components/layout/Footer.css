@@ -51,8 +51,8 @@
 }
 
 .footer__field label {
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 600;
   color: var(--text-on-dark);
 }

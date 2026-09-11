@@ -6,31 +6,32 @@
 }
 
 /* ---- Header: a propósito NO sigue el patrón "centrado" del resto del sitio ----
-   Texto a la izquierda + bloque de patrón grande (40%) a la derecha. */
+   Texto a la izquierda; el patrón es un FONDO real detrás (45% derecho,
+   a todo el alto del header) — no una tarjeta chica con bordes redondeados. */
 .services__header {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 360px;
   display: flex;
   align-items: center;
-  gap: var(--sp-12);
   margin-bottom: var(--sp-12);
-  padding-block: var(--sp-4);
+  padding-block: var(--sp-8);
 }
 
 .services__header-text {
-  flex: 1 1 60%;
-  min-width: 0;
-  max-width: 640px;
+  position: relative;
+  z-index: 1;
+  max-width: 50%;
 }
 
-/* Bloque de patrón — 40% del ancho del header, un elemento de diseño
-   propio, no una textura escondida detrás del título. Un solo tile grande
-   (scale alto) para que no se sienta repetitivo. */
-.services__header-pattern-block {
-  flex: 0 0 40%;
-  align-self: stretch;
-  min-height: 220px;
-  position: relative;
-  border-radius: var(--radius-card);
-  overflow: hidden;
+/* Patrón de fondo — ocupa el 45% derecho, a todo el alto del header. Un
+   solo tile grande (scale alto) para que no se sienta repetitivo. */
+.services__header-pattern {
+  position: absolute;
+  inset: 0;
+  left: 55%;
+  z-index: 0;
 }
 
 .services__overline {
@@ -43,14 +44,23 @@
 }
 
 @media (max-width: 760px) {
+  /* Apilado: el patrón pasa a ser una franja horizontal debajo del texto,
+     no una columna angosta al lado (quedaba muy apretado). */
   .services__header {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--sp-6);
+    display: block;
+    min-height: 0;
+    padding-block: var(--sp-6);
   }
-  .services__header-pattern-block {
-    flex-basis: auto;
-    min-height: 140px;
+  .services__header-text {
+    max-width: none;
+    margin-bottom: var(--sp-6);
+  }
+  .services__header-pattern {
+    position: relative;
+    inset: auto;
+    left: auto;
+    height: 140px;
+    width: 100%;
   }
 }
 

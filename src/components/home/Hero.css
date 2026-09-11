@@ -31,7 +31,7 @@
   background-position: center;
 }
 
-/* Overlay navy — para que el texto respire sobre la foto.
+/* Overlay navy — lo justo para que el texto respire, sin tapar la foto.
    Sin foto queda navy sobre navy (invisible), no molesta. */
 .hero__overlay {
   position: absolute;
@@ -39,9 +39,9 @@
   z-index: -1;
   background: linear-gradient(
     to right,
-    rgba(4, 0, 34, 0.82) 0%,
-    rgba(4, 0, 34, 0.62) 60%,
-    rgba(4, 0, 34, 0.5) 100%
+    rgba(4, 0, 34, 0.62) 0%,
+    rgba(4, 0, 34, 0.42) 60%,
+    rgba(4, 0, 34, 0.25) 100%
   );
 }
 
@@ -111,8 +111,8 @@
 
 .hero__highlight {
   position: relative;
-  font-size: 13px;
-  line-height: 18px;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 500;
   color: rgba(255, 246, 241, 0.78);
 }

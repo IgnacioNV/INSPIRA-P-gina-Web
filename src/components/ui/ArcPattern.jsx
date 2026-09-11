@@ -14,6 +14,15 @@ import './ArcPattern.css'
  * El propio PNG es transparente entre arcos: no lleva background-color
  * propio, deja ver lo que haya debajo (superficie de la seccion).
  *
+ * El degradado de opacidad extra (fade up/down, para portadas y cierres de
+ * seccion) NO se resuelve con mask-image: en Chrome/Safari, un elemento con
+ * mask-image + background-image tileado dentro de un ancestro con overflow
+ * hidden puede "pegarse" (glitch de repintado) durante transiciones/scroll,
+ * que es justo lo que pasaba en el cierre navy. En vez de eso se superpone
+ * un segundo div con un gradiente solido (transparente -> el color de fondo
+ * de la seccion), asi el patron "se apaga" tapandose de a poco con el mismo
+ * color de atras — mismo efecto visual, sin mask, sin glitch.
+ *
  * @param {'durazno-crema'|'navy-crema'|'crema-navy'} variant
  * @param {'up'|'down'|'none'} fade  degradado de opacidad extra por seccion
  *   (portadas / cierres, manual §04) ademas del que ya trae el archivo
@@ -24,6 +33,13 @@ const IMG = {
   'navy-crema': '/patterns/arcos-navy.png',
   'crema-navy': '/patterns/arcos-crema.png',
 }
+// Color al que se "apaga" el patron en cada variante (el fondo real de la
+// seccion donde se usa cada una, ver manual §04).
+const FADE_TO = {
+  'durazno-crema': 'var(--c-cream)',
+  'navy-crema': 'var(--c-cream)',
+  'crema-navy': 'var(--c-navy)',
+}
 const TILE_W = 243
 const TILE_H = 181
 
@@ -33,10 +49,17 @@ function ArcPattern({ variant = 'durazno-crema', fade = 'none', scale = 220, cla
 
   return (
     <div
-      className={`arc-pattern arc-pattern--fade-${fade} ${className}`.trim()}
+      className={`arc-pattern ${className}`.trim()}
       style={{ backgroundImage: `url(${src})`, backgroundSize: `${scale}px ${h}px` }}
       aria-hidden="true"
-    />
+    >
+      {fade !== 'none' && (
+        <div
+          className={`arc-pattern__fade arc-pattern__fade--${fade}`}
+          style={{ '--fade-to': FADE_TO[variant] ?? 'var(--c-cream)' }}
+        />
+      )}
+    </div>
   )
 }
 

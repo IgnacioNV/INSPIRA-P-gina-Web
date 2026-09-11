@@ -76,3 +76,21 @@
   --focus-ring-on-dark: 2px solid var(--c-cream);
   --focus-offset: 2px;
 }
+
+/* ============================================================
+   Escala tipografica — piso de 14px en desktop.
+   El manual v1.2 define Body/Caption/Overline pensados para piezas chicas
+   (12.5 / 10.5 / 10px); en pantalla, por debajo de los ~900px de ancho en
+   adelante, eso lee demasiado chico. Se mantiene la MISMA jerarquia del
+   manual (mismos pesos, mismo uso de mayuscula solo en Overline, mismo
+   tracking +12%) pero un escalon mas grande en desktop — mobile se queda
+   con los valores del manual tal cual.
+   ============================================================ */
+@media (min-width: 900px) {
+  :root {
+    --fs-h2: 30px;        --lh-h2: 38px;
+    --fs-body: 16px;      --lh-body: 24px;
+    --fs-caption: 14px;   --lh-caption: 20px;
+    --fs-overline: 14px;  --lh-overline: 19px;
+  }
+}
