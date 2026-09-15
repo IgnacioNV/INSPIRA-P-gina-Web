@@ -1,8 +1,9 @@
 .services {
   background-color: var(--c-cream);
   /* Solo padding arriba: abajo cierra a pleno con la franja navy de pilares,
-     sin devolver a crema antes de eso. */
-  padding-top: var(--sp-24);
+     sin devolver a crema antes de eso. Antes sp-24 (96px): demasiado aire
+     entre "Confían en nosotros" y este header. */
+  padding-top: var(--sp-12);
 }
 
 /* ---- Header: a propósito NO sigue el patrón "centrado" del resto del sitio ----
@@ -12,7 +13,10 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  min-height: 360px;
+  /* Antes 360px con el texto centrado adentro: quedaba con ~130px de aire
+     arriba Y abajo del título (mucho más que el resto del sitio). El alto
+     ahora lo define el contenido + este padding, no un mínimo grande. */
+  min-height: 200px;
   display: flex;
   align-items: center;
   margin-bottom: var(--sp-12);
@@ -25,17 +29,23 @@
   max-width: 50%;
 }
 
-/* Patrón de fondo — ocupa el 45% derecho, a todo el alto del header. Un
-   solo tile grande (scale alto) para que no se sienta repetitivo. */
+/* Patrón de fondo, mismo criterio que "Nosotros" en el sitio en producción
+   (public/patrones/patron-nosotros.png + Nosotros.css): position absolute,
+   una caja de ancho fijo que sangra por fuera del contenedor (offsets
+   negativos), no una franja que ocupa el 100% del alto del header. */
 .services__header-pattern {
   position: absolute;
-  inset: 0;
-  left: 55%;
+  top: -32px;
+  right: -100px;
+  bottom: -32px;
+  width: 480px;
   z-index: 0;
 }
-/* Tan sutil como en Nosotros (ahí el patrón está al 12% de opacidad) */
+/* En Nosotros el patrón se ve sólido/bien marcado (2 columnas de arcos
+   grandes, nada sutil) — 0.35 todavía quedaba demasiado lavado. Subimos
+   bastante más la opacidad y el tile, más parecido a la referencia real. */
 .services__header-pattern .arc-pattern {
-  opacity: 0.15;
+  opacity: 0.85;
 }
 
 .services__overline {
@@ -61,8 +71,9 @@
   }
   .services__header-pattern {
     position: relative;
-    inset: auto;
-    left: auto;
+    top: auto;
+    right: auto;
+    bottom: auto;
     height: 140px;
     width: 100%;
   }
@@ -76,15 +87,22 @@
   margin: 0 0 var(--sp-24);
 }
 
+/* Cada card revela sola cuando el usuario scrollea hasta ella (no todas
+   juntas al entrar la sección) y entra deslizando desde el lado por el
+   que "mira" — mismo lado que su foto, ver nth-child(even) más abajo. */
 .services__item {
   opacity: 0;
-  transform: translateY(var(--reveal-shift));
-}
-.services__list.is-visible .services__item {
-  opacity: 1;
-  transform: translateY(0);
   transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
-  transition-delay: var(--reveal-delay, 0ms);
+}
+.services__item--left {
+  transform: translateX(-56px);
+}
+.services__item--right {
+  transform: translateX(56px);
+}
+.services__item.is-visible {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* Alterna el lado de la foto card por card */
