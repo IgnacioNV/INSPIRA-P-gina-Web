@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import Logo from '../ui/Logo'
 import Button from '../ui/Button'
 import { SERVICES } from '../../data/services'
@@ -69,24 +69,53 @@ function Navbar() {
     setOpen(false)
   }, [pathname])
 
-  // Bloquear scroll del body con el menu mobile abierto + cerrar con Escape
+  // Bloquear scroll de la pagina con el menu mobile abierto + cerrar con
+  // Escape. overflow:hidden solo en el body no alcanza en mobile (iOS en
+  // particular sigue dejando scrollear con el dedo por detras del menu) —
+  // se fija el body en su posicion actual con position:fixed y se restaura
+  // el scroll exacto al cerrar. overflow: clip (mismo valor en los dos
+  // ejes) y no "hidden": probado en vivo que mezclar clip (X) con hidden
+  // (Y) hace que el navegador baje el clip a hidden en los dos ejes (es
+  // comportamiento real de CSS, no bug) — hidden en el eje X sigue
+  // dejando mover el scroll horizontal por JS/touch, clip no.
   useEffect(() => {
     if (!open) return
-    document.body.style.overflow = 'hidden'
+    const scrollY = window.scrollY
+    const { body } = document
+    body.style.position = 'fixed'
+    body.style.top = `-${scrollY}px`
+    body.style.left = '0'
+    body.style.right = '0'
+    body.style.overflow = 'clip'
     const onKey = (e) => e.key === 'Escape' && setOpen(false)
     document.addEventListener('keydown', onKey)
     return () => {
-      document.body.style.overflow = ''
+      body.style.position = ''
+      body.style.top = ''
+      body.style.left = ''
+      body.style.right = ''
+      body.style.overflow = ''
+      window.scrollTo(0, scrollY)
       document.removeEventListener('keydown', onKey)
     }
   }, [open])
 
   const conversemos = makeHashHandler(navigate, pathname, 'contacto', { focus: 'nombre' })
+  const irAlInicio = makeHashHandler(navigate, pathname, 'inicio')
 
   const closeThen = useCallback(
     (fn) => (e) => {
+      // preventDefault ya mismo (fn seguro lo llama también, pero de forma
+      // diferida — más abajo — y para entonces ya es tarde para frenar la
+      // navegación por default del link).
+      e.preventDefault()
       setOpen(false)
-      fn(e)
+      // Si fn corriera ya mismo, el cleanup del bloqueo de scroll (dispara
+      // por el setOpen de arriba, corre después de este tick) pisaría el
+      // scroll que fn recién hizo con el scroll viejo que tenía guardado
+      // de antes de abrir el menú. Se difiere fn un tick para que ese
+      // cleanup restaure primero, y recién ahí fn scrollee a su destino.
+      setTimeout(() => fn(e), 0)
     },
     [],
   )
@@ -97,7 +126,12 @@ function Navbar() {
       style={{ '--nav-list-shift': `${condensed ? 0 : listShift}px` }}
     >
       <div className="navbar__inner u-container" ref={innerRef}>
-        <Link to="/" className="navbar__brand" aria-label="Inspira — Ir al inicio">
+        <Link
+          to="/"
+          className="navbar__brand"
+          aria-label="Inspira — Ir al inicio"
+          onClick={irAlInicio}
+        >
           <Logo tone="navy" />
         </Link>
 
@@ -106,20 +140,20 @@ function Navbar() {
           <ul className="navbar__list" ref={listRef}>
             {SERVICES.map((s) => (
               <li key={s.slug}>
-                <Link to={`/servicios/${s.slug}`} className="navbar__link">
+                <NavLink to={`/servicios/${s.slug}`} className="navbar__link">
                   {s.navLabel ?? s.name}
-                </Link>
+                </NavLink>
               </li>
             ))}
             <li>
-              <Link to="/nosotros" className="navbar__link">
+              <NavLink to="/nosotros" className="navbar__link">
                 Nosotros
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/busquedas" className="navbar__link">
+              <NavLink to="/busquedas" className="navbar__link">
                 Búsquedas/CV
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>
@@ -157,24 +191,55 @@ function Navbar() {
         className={`navbar__mobile ${open ? 'navbar__mobile--open' : ''}`}
         hidden={!open}
       >
+        {/* Header propio del panel (logo + cerrar): el panel es fixed a toda
+            pantalla y, con el scroll bloqueado (position:fixed en el body),
+            el navbar de arriba pierde su "sticky" y puede quedar fuera de
+            vista si el usuario abrió el menú ya scrolleado — este header no
+            depende de eso, siempre está visible mientras el panel está abierto. */}
+        <div className="navbar__mobile-header u-container">
+          <Link
+            to="/"
+            className="navbar__brand"
+            aria-label="Inspira — Ir al inicio"
+            onClick={closeThen(irAlInicio)}
+          >
+            <Logo tone="navy" />
+          </Link>
+          <button
+            type="button"
+            className="navbar__mobile-close"
+            aria-label="Cerrar menú"
+            onClick={() => setOpen(false)}
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M6 6l12 12M18 6L6 18"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+        </div>
+
         <nav className="navbar__mobile-inner u-container" aria-label="Menú principal">
           <ul className="navbar__mobile-list">
             {SERVICES.map((s) => (
               <li key={s.slug}>
-                <Link to={`/servicios/${s.slug}`} className="navbar__mobile-link">
+                <NavLink to={`/servicios/${s.slug}`} className="navbar__mobile-link">
                   {s.name}
-                </Link>
+                </NavLink>
               </li>
             ))}
             <li>
-              <Link to="/nosotros" className="navbar__mobile-link">
+              <NavLink to="/nosotros" className="navbar__mobile-link">
                 Nosotros
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/busquedas" className="navbar__mobile-link">
+              <NavLink to="/busquedas" className="navbar__mobile-link">
                 Búsquedas/CV
-              </Link>
+              </NavLink>
             </li>
           </ul>
           <Button

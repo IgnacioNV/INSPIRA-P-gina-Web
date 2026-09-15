@@ -9,11 +9,19 @@ import { scrollToId } from '../lib/goToHash'
 function Home() {
   const { state } = useLocation()
 
-  // Llega desde otra ruta pidiendo scroll a una seccion
+  // Llega desde otra ruta pidiendo scroll a una seccion. React Router no
+  // resetea el scroll en un push normal, así que Home puede montar en
+  // cualquier scrollY heredado de la ruta anterior — desde ahí la animación
+  // hacia la sección quedaba corta o directamente parecía un salto. Se
+  // resetea a top (instantáneo) antes de animar, así siempre se ve recorrer
+  // la página entera.
   useEffect(() => {
     if (state?.scrollTo) {
+      window.scrollTo(0, 0)
       requestAnimationFrame(() =>
-        scrollToId(state.scrollTo, state.focus ? { focus: state.focus } : undefined),
+        requestAnimationFrame(() =>
+          scrollToId(state.scrollTo, state.focus ? { focus: state.focus } : undefined),
+        ),
       )
     }
   }, [state])

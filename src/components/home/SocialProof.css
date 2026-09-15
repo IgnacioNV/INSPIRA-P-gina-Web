@@ -102,7 +102,9 @@
   }
 }
 
-/* ---- Grilla: sin caja/fondo por logo — imagen directo sobre la seccion ---- */
+/* ---- Grilla: sin caja/fondo por logo — imagen directo sobre la seccion.
+   (Se probó con card individual — fondo blanco + borde — a pedido de una
+   referencia, pero no convenció; se volvió a este tratamiento.) ---- */
 .social-proof__grid {
   display: flex;
   flex-wrap: wrap;
@@ -177,21 +179,19 @@
   }
 }
 
+/* Antes bajaba a 2 por fila debajo de 420px para que cada logo quedara
+   grande — pedido explícito de que sea al revés: se queda en 3 por fila
+   hasta el celular más chico, así cada card es notablemente más chica en
+   vez de ocupar medio ancho de pantalla. */
 @media (max-width: 640px) {
   .social-proof__cell {
     flex-basis: calc((100% - 2 * var(--sp-3)) / 3);
+    min-width: 0;
   }
   .social-proof__grid {
-    gap: var(--sp-3);
+    gap: var(--sp-2);
   }
   .social-proof__title {
     margin-bottom: var(--sp-6);
-  }
-}
-
-@media (max-width: 420px) {
-  .social-proof__cell {
-    flex-basis: calc((100% - var(--sp-3)) / 2);
-    min-width: 0;
   }
 }

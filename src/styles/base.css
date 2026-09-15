@@ -156,6 +156,21 @@ ol[class] {
     line-height: var(--lh-h2);
   }
 }
+
+/* En celulares chicos (375-430px) ese único escalón no alcanzaba: el
+   título del Hero seguía ocupando 3 líneas grandes, se sentía enorme.
+   Un paso más, ya no atado a la escala con nombre (no hay un peldaño
+   "más chico que H2" definido) — valores explícitos para esta franja. */
+@media (max-width: 480px) {
+  .t-display {
+    font-size: 26px;
+    line-height: 32px;
+  }
+  .t-h1 {
+    font-size: 22px;
+    line-height: 28px;
+  }
+}
 .t-h2 {
   font-size: var(--fs-h2);
   line-height: var(--lh-h2);
