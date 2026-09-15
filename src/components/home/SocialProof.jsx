@@ -28,6 +28,10 @@ function SocialProof() {
   const wrapRef = useRef(null)
   const [pinned, setPinned] = useState(false)
   const [revealedCount, setRevealedCount] = useState(0)
+  // El overline+título arrancan ocultos y se revelan con el mismo trigger
+  // que dispara el conteo de logos (ver los dos efectos de abajo) — no
+  // tiene que quedar "siempre visible" desde que carga la página.
+  const [started, setStarted] = useState(false)
 
   // Decide una sola vez si esta carga pinea (desktop + sin reduced-motion)
   useEffect(() => {
@@ -40,7 +44,10 @@ function SocialProof() {
 
   // Sin animación (reduced-motion): todo visible de una, sin listeners.
   useEffect(() => {
-    if (prefersReducedMotion()) setRevealedCount(CLIENTS.length)
+    if (prefersReducedMotion()) {
+      setRevealedCount(CLIENTS.length)
+      setStarted(true)
+    }
   }, [])
 
   // Desktop pineado: el scroll nativo decide cuántos logos ya aparecieron.
@@ -58,10 +65,23 @@ function SocialProof() {
       raf = 0
       const rect = el.getBoundingClientRect()
       const pinH = window.innerHeight - navbarH
-      const total = el.offsetHeight - pinH
-      const scrolled = Math.min(Math.max(navbarH - rect.top, 0), Math.max(total, 0))
+      const mainPin = el.offsetHeight - pinH
+      // No arranca recién cuando el pin engancha arriba del todo (eso es
+      // "llegar por completo" a la sección, se siente tarde) — arranca
+      // apenas la sección empieza a asomar desde abajo al scrollear, como
+      // el resto de los reveals del sitio, y sigue contando hasta el mismo
+      // final de siempre (cuando el pin se suelta). Mismo final, arranque
+      // bastante más temprano.
+      const revealStart = window.innerHeight * 0.85
+      const approach = revealStart - navbarH
+      const total = approach + mainPin
+      const scrolled = Math.min(Math.max(revealStart - rect.top, 0), Math.max(total, 0))
       const progress = total > 0 ? scrolled / total : 1
       setRevealedCount(Math.round(progress * CLIENTS.length))
+      // El texto arranca a revelarse en el mismo instante que el primer
+      // logo (mismo trigger, misma progress) — las dos animaciones van
+      // siempre juntas.
+      if (progress > 0) setStarted(true)
     }
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(update)
@@ -89,6 +109,7 @@ function SocialProof() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setRevealedCount(CLIENTS.length)
+          setStarted(true)
           io.unobserve(el)
         }
       },
@@ -103,10 +124,12 @@ function SocialProof() {
       <div ref={wrapRef} className={`social-proof__pin-wrap ${pinned ? 'is-pinned' : ''}`}>
         <div className="social-proof__pin">
           <div className="u-container">
-            <p className="social-proof__overline t-overline">Confían en nosotros</p>
-            <h2 id="social-proof-title" className="t-section-title social-proof__title">
-              Organizaciones que eligen a Inspira
-            </h2>
+            <div className={`social-proof__header ${started ? 'is-visible' : ''}`}>
+              <p className="social-proof__overline t-overline">Confían en nosotros</p>
+              <h2 id="social-proof-title" className="t-section-title social-proof__title">
+                Organizaciones que eligen a Inspira
+              </h2>
+            </div>
 
             <ul className="social-proof__grid">
               {CLIENTS.map((client, i) => (

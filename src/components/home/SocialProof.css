@@ -29,7 +29,7 @@
 }
 
 /* El header + la grilla ocupan el 100% del alto pineado: la grilla crece
-   (flex:1) para llenar lo que sobra, no queda centrada con aire arriba/abajo. */
+   (flex:1) para llenar lo que sobra, sin dejar aire arriba/abajo. */
 .social-proof__pin-wrap.is-pinned .u-container {
   display: flex;
   flex-direction: column;
@@ -41,25 +41,49 @@
   margin-bottom: var(--sp-12);
 }
 
+/* CSS Grid acá (no flex-wrap): con flex, el alto "hipotético" de cada fila
+   salía del aspect-ratio de cada logo ANTES de aplicarse el tope del 55%
+   (una fila con un logo cuadrado terminaba mucho más alta que una fila de
+   logos anchos), así que las filas quedaban desparejas y el total se pasaba
+   del alto del pin — de ahí el riesgo real de que algún logo quedara
+   tapado por el overflow:hidden. Con grid + 1fr todas las filas miden
+   exactamente lo mismo, sin importar el contenido: llena el alto entero
+   parejo, sin excederlo nunca. */
 .social-proof__pin-wrap.is-pinned .social-proof__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 1fr;
   flex: 1;
   min-height: 0;
-  align-content: stretch;
   gap: var(--sp-4);
 }
 
-/* Sin aspect-ratio fijo acá: cada logo estira a la altura de su fila,
-   la fila se calcula sola para que 41 logos llenen el alto disponible. */
+/* Sin aspect-ratio fijo acá: cada logo estira a la altura de su fila (todas
+   iguales, ver arriba). min-height/width:0 para que ningún logo empuje su
+   fila/columna más allá del 1fr que le toca. */
 .social-proof__pin-wrap.is-pinned .social-proof__cell {
   aspect-ratio: auto;
   min-width: 0;
+  min-height: 0;
   max-width: none;
-  flex: 1 1 calc((100% - 5 * var(--sp-4)) / 6);
 }
 
 /* Mobile / reduced-motion: sin pin, flujo normal */
 .social-proof__pin-wrap:not(.is-pinned) .social-proof__pin {
   padding-block: var(--sp-16);
+}
+
+/* El overline+título no van estáticos: aparecen recién cuando el usuario
+   scrollea hasta acá (misma señal que dispara el conteo de logos, ver
+   SocialProof.jsx — arrancan juntos, no el texto de una y los logos después). */
+.social-proof__header {
+  opacity: 0;
+  transform: translateY(var(--reveal-shift));
+}
+.social-proof__header.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
 }
 
 .social-proof__overline {
@@ -69,6 +93,13 @@
 
 .social-proof__title {
   margin-bottom: var(--sp-8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-proof__header {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* ---- Grilla: sin caja/fondo por logo — imagen directo sobre la seccion ---- */
